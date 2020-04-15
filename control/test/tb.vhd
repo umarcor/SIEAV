@@ -1,45 +1,45 @@
---http://ctms.engin.umich.edu/CTMS/index.php?example=MotorSpeed&section=ControlDigital
---https://dsp.stackexchange.com/questions/14965/how-to-implement-a-filter-in-matlab
---http://stackoverflow.com/questions/22236977/latex-math-in-github-wikis
---
-
 entity tb is
+  generic (
+    REF_WIDTH : natural := 8
+  );
 end entity;
-
----
 
 library ieee;
 context ieee.ieee_std_context;
 
 architecture arch of tb is
- constant t: time:= 10 ns;
- signal clk, rst, done: std_logic:='0';
- signal r: std_logic_vector(7 downto 0):=(others=>'1');
+
+ constant t : time:= 10 ns;
+ signal done : boolean := false;
+ signal clk, rst : std_logic := '0';
+ signal ref : integer range 0 to 2**REF_WIDTH-1;
+ signal ref_stdv : std_logic_vector(REF_WIDTH-1 downto 0);
+
 begin
 
-p_clk: process begin
-  clk <= '1'; wait for t/2;
-  clk <= '0'; wait for t/2;
-  if done then wait; end if;
-end process;
+  clk <= not clk after t/2;
 
-p_rst: process begin
-  rst <= '1'; wait for 10*t;
-  rst <= '0'; wait for 5 ms;
-  if done then wait; end if;
-end process;
+  p_main: process begin
+    report "start simulation";
+    rst <= '1';
+    wait for 10*t;
+    rst <= '0';
 
-p_main: process begin
-  r <= std_logic_vector(to_signed(0,8)); wait for 1 us;
-  r <= std_logic_vector(to_signed(63,8)); wait for 1 ms;
-  r <= std_logic_vector(to_signed(127,8)); wait for 1 ms;
+    ref <= 0;   wait for 1 us;
+    ref <= 40;  wait for 1 ms;
+    ref <= 100; wait for 1 ms;
 
-  assert false report "end of test" severity note;
-  done <= '1';
-  --  Wait forever; this will finish the simulation.
-  wait;
-end process;
+    report "end of test";
+    std.env.finish(0);
+  end process;
 
-uut: entity work.sys port map ( clk, rst, r );
+  ref_stdv <= std_logic_vector(to_signed(ref, REF_WIDTH));
+
+  uut: entity work.sys
+  port map (
+    CLK => clk,
+    RST => rst,
+    REF => ref_stdv
+  );
 
 end arch;

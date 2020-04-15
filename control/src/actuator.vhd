@@ -11,6 +11,8 @@ entity actuator is
   );
 end entity;
 
+---
+
 architecture arch of actuator is
 
 begin
