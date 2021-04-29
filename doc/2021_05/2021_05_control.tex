@@ -1,0 +1,43 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\tikzset{>={Latex[width=2mm,length=2mm]},
+  base/.style = {
+    rectangle, rounded corners, draw=black,
+    minimum height=1cm, text centered, font=\sffamily
+  },
+  process/.style = {
+    base, minimum width=2.5cm, fill=orange!15,
+    font=\ttfamily
+  },
+}
+
+\graphicspath{{./img/},{../2020_03/img/}}
+\DeclareGraphicsExtensions{.png,.jpg,.pdf}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks,urlcolor=blue!50!black,linkcolor=red}
+
+\usepackage{fontawesome}
+\usepackage{listings}
+
+\title{\small Máster en Sistemas Electrónicos Avanzados (MSEA)\\\Large Co-simulación y verificación funcional con\\VHDL, C/C++ y Python/m\\{\small $\{$control$\}$}}
+\author{Unai Martinez Corral\\\href{mailto:unai.martinezcorral@ehu.eus}{\faEnvelope~unai.martinezcorral@ehu.eus} ~\href{https://github.com/umarcor}{\faGithub~umarcor} ~\href{https://gitlab.com/umarcor}{\faGitlab~umarcor}}
+\institute{Escuela de Ingeniería de Bilbao\\Universidad del País Vasco/Euskal Herriko Unibertsitatea (UPV/EHU)}
+\date{2021/05}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Exercises: VHPIDIRECT}
+\centering
+\vfill
+\includegraphics[width=\linewidth]{control.pdf}
+\vfill
+\end{frame}
+
+\end{document}
+

@@ -70,6 +70,7 @@ jobs:
       matrix:
         slides:
           - 2020_03
+          - 2021_05
     steps:
 
     - uses: actions/checkout@v2
@@ -80,4 +81,5 @@ jobs:
     - name: 'Upload artifact: ${{ matrix.slides }}.pdf'
       uses: actions/upload-artifact@v2
       with:
-        path: doc/pdf/${{ matrix.slides }}.pdf
+        name: ${{ matrix.slides }}
+        path: doc/pdf/*.pdf
