@@ -36,6 +36,7 @@ env:
 
 jobs:
 
+
   asciidoc:
     runs-on: ubuntu-latest
     steps:
@@ -60,3 +61,23 @@ jobs:
         git config --local user.name "GHA"
         git commit -am "update ${{ github.sha }}"
         git push -u origin +HEAD:gh-pages
+
+
+  slides:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        slides:
+          - 2020_03
+    steps:
+
+    - uses: actions/checkout@v2
+
+    - name: Build slides
+      run: make -C doc/${{ matrix.slides }} container
+
+    - name: 'Upload artifact: ${{ matrix.slides }}.pdf'
+      uses: actions/upload-artifact@v2
+      with:
+        path: doc/pdf/${{ matrix.slides }}.pdf
