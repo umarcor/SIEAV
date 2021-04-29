@@ -4,4 +4,4 @@ build:
 	index.adoc
 
 container:
-	docker run --rm -itv /$(PWD)://wrk -w //wrk/doc asciidoctor/docker-asciidoctor make
+	docker run --rm -v /$(PWD)://wrk -w //wrk/doc asciidoctor/docker-asciidoctor make
