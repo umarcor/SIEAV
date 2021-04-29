@@ -60,3 +60,27 @@ _TBC_
 == Assignment/exercise
 
 _TBC_
+
+:numbered!:
+
+[bibliography]
+== References
+
+[bibliography]
+.Books
+- [[[taoup]]] Eric Steven Raymond. 'The Art of Unix Programming'. Addison-Wesley. ISBN 0-13-142901-9.
+- [[[walsh-muellner]]] Norman Walsh & Leonard Muellner. 'DocBook - The Definitive Guide'. O'Reilly & Associates. 1999. ISBN 1-56592-580-7.
+
+[bibliography]
+.Articles
+- [[[abc2003]]] Gall Anonim. 'An article', Whatever. 2003.
+
+[glossary]
+== Glossary
+
+[glossary]
+A glossary term::
+  The corresponding (indented) definition.
+
+A second glossary term::
+  The corresponding (indented) definition.
