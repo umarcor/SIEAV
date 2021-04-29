@@ -43,7 +43,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Build site
-      run: make -C doc container
+      run: make -C doc/site container
 
     - name: Publish site to gh-pages (doc)
       if: github.event_name != 'pull_request' && github.repository == 'umarcor/MSEA'
@@ -53,8 +53,8 @@ jobs:
         git init
         cp ../.git/config ./.git/config
         touch .nojekyll
-        mv ../doc/index.html ./
-        cp -vr ../doc/img ./
+        mv ../doc/site/index.html ./
+        cp -vr ../doc/site/img ./
         git add .
         git config --local user.email "push@gha"
         git config --local user.name "GHA"
