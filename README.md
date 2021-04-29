@@ -11,4 +11,4 @@ Course *[Cosimulación para la verificación de sistemas sobre FPGAs](https://ww
   - [kraigher/VUnit-Tutorial](https://github.com/kraigher/VUnit-Tutorial)
 - [gtkwave/gtkwave](https://github.com/gtkwave/gtkwave)
   - [Visualisation of fixed-point signals as Analog](https://github.com/gtkwave/gtkwave/issues/9)
-  - [Reading waveforms from HDL simulators with PulseView](https://github.com/umarcor/pulseview/tree/ghdl/ghdl)
+  - [Reading waveforms from HDL simulators with PulseView](https://umarcor.github.io/osvb/notebook/sigrok)
