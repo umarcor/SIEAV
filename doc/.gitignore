@@ -11,6 +11,8 @@
 *.fls
 *.out
 *.toc
+*.snm
+*.nav
 
 # Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
