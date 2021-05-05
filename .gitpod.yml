@@ -1,0 +1,24 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - before: >
+       git clone --recurse-submodules https://github.com/VUnit/vunit
+    init: >
+       cd ghdl_ug/ &&
+       gp preview README.md &&
+       gp open hello.vhd &&
+       gp open heartbeat.vhd &&
+       gp open adder.vhd &&
+       gp open tb_adder.vhd
+
+# https://www.gitpod.io/docs/config-ports/
+ports:
+  - port: 6080  # VNC for e.g. gtkwave
+    onOpen: notify
+  - port: 5900
+    onOpen: ignore
+
+# TODO: add ghdl-ls and the VSIX
+#vscode:
+#  extensions:
