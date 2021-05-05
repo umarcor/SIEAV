@@ -1,5 +1,9 @@
+library vunit_lib;
+context vunit_lib.vunit_context;
+
 --  A testbench has no ports.
 entity tb_adder is
+  generic (runner_cfg : string);
 end tb_adder;
 
 architecture behav of tb_adder is
@@ -35,6 +39,7 @@ begin
        ('1', '1', '0', '0', '1'),
        ('1', '1', '1', '1', '1'));
   begin
+    test_runner_setup(runner, runner_cfg);
     --  Check each pattern.
     for i in patterns'range loop
       --  Set the inputs.
@@ -51,7 +56,8 @@ begin
     end loop;
     assert false report "end of test" severity note;
     --  Wait forever; this will finish the simulation.
-    wait;
+    --wait;
+    test_runner_cleanup(runner); -- Simulation ends here
   end process;
 
 end behav;

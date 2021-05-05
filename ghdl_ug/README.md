@@ -9,7 +9,7 @@ ghdl -a hello.vhd
 
 ghdl -e hello_world
 
-./hello_world.exe
+./hello_world
 ```
 
 Notes:
@@ -28,9 +28,9 @@ ghdl -a heartbeat.vhdl
 
 ghdl -e heartbeat
 
-./heartbeat.exe
+./heartbeat
 
-./heartbeat.exe --wave=wave.ghw
+./heartbeat --wave=wave.ghw
 
 gtkwave wave.ghw
 ```
@@ -50,7 +50,7 @@ ghdl -a tb_adder.vhd
 ghdl -e tb_adder
 ./tb_adder
 
-./tb_adder.exe --wave=wave.ghw
+./tb_adder --wave=wave.ghw
 gtkwave wave.ghw
 ```
 
