@@ -2,11 +2,11 @@ library vunit_lib;
 context vunit_lib.vunit_context;
 
 --  A testbench has no ports.
-entity tb_adder is
+entity tb_adder_vunit is
   generic (runner_cfg : string);
-end tb_adder;
+end tb_adder_vunit;
 
-architecture behav of tb_adder is
+architecture behav of tb_adder_vunit is
   --  Declaration of the component that will be instantiated.
   component adder
     port (i0, i1 : in bit; ci : in bit; s : out bit; co : out bit);
