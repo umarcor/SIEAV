@@ -68,15 +68,15 @@ Remarks:
 ### Executing the full adder example through VUnit
 
 ```sh
-python run.py -l
+python vunit_run.py -l
 
 export VUNIT_SIMULATOR=ghdl
-python run.py -v
-python run.py -v -g
+python vunit_run.py -v
+python vunit_run.py -v -g
 
 export VUNIT_SIMULATOR=modelsim
-python run.py -v
-python run.py -v -g
+python vunit_run.py -v
+python vunit_run.py -v -g
 ```
 
 Remarks:
@@ -86,4 +86,4 @@ Remarks:
 - Integration with GTKWave is built-in.
 - Switching between simulators is a matter of changing an environment variable.
 
-NOTE: although `run.py` and `tb_adder_vunit.vhd` are provided here, readers are encouraged to trying writing them on their own, by reading the [VUnit User Guide](http://vunit.github.io/user_guide.html).
+NOTE: although `vunit_run.py` and `tb_adder_vunit.vhd` are provided here, readers are encouraged to trying writing them on their own, by reading the [VUnit User Guide](http://vunit.github.io/user_guide.html).
