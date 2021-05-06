@@ -42,7 +42,7 @@ Remarks:
 
 ATTENTION: If the simulation is executed through `ghdl -r ...`, when using LLVM/GCC backends, Ctrl+C might terminate GHDL
 but not the underlying (and running) executable. Therefore, the waveform will grow non-stop. We might need to find the
-`heartbeat` task and kill it. Note that this is precisely done for didactic purposes. The next example explains how to do
+`heartbeat` task (`tasklist | grep heartbeat`) and kill it. Note that this is precisely done for didactic purposes. The next example explains how to do
 it properly.
 
 ## *Full adder* module and testbench
