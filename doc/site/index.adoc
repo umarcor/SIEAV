@@ -1,10 +1,10 @@
-= Máster en Sistemas Electrónicos Avanzados (MSEA)
+= Máster en Sistemas Electrónicos Avanzados (SIEAV)
 :author: Unai Martinez-Corral
 :email: unai.martinezcorral[at]ehu[dot]eus
 :toc: left
 :toclevels: 4
-:repotree: https://github.com/umarcor/MSEA/tree/main/
-:toc-title: Máster en Sistemas Electrónicos Avanzados (MSEA)
+:repotree: https://github.com/umarcor/SIEAV/tree/main/
+:toc-title: Máster en Sistemas Electrónicos Avanzados (SIEAV)
 :icons: font
 :favicon: img/ehu.png
 
@@ -30,7 +30,7 @@ The summary of these sessions is the following:
 
 NOTE: These sessions are based on the course unit "_Design of digital controllers with FPGAs_" ("_Diseño de controladores digitales con FPGAs_") taught in the same master degree (https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20200&p_anyo_pop=20170&p_cod_centro=345&p_cod_materia=9120&p_cod_asignatura=504740&p_tipo_asignatura=1[2020/2021]). Hence, attendants are expected to have prior knowledge about the fundamentals of control theory (discretization of state-space representation and transfer-functions, sampling and PID algorithms/implementations). Nonetheless, these sessions are focused on VHDL language features, not on control.
 
-IMPORTANT: These sessions are taught in spanish and/or basque; so, some references might not be available in english. Still, most of the documentation and code examples should be readable to any english speaker. Should you find any issue in this regard, please https://github.com/umarcor/MSEA/issues/new[let us know]!
+IMPORTANT: These sessions are taught in spanish and/or basque; so, some references might not be available in english. Still, most of the documentation and code examples should be readable to any english speaker. Should you find any issue in this regard, please https://github.com/umarcor/SIEAV/issues/new[let us know]!
 
 == VHDL, a programming language
 
