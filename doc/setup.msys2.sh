@@ -30,11 +30,6 @@ pacman -S --noconfirm p7zip git \
     mingw-w64-x86_64-gtkwave \
     mingw-w64-x86_64-python-pip
 
-# FIXME: temporal workaround for using the GTK2 build of GTKWave by default
-pacman -S --noconfirm mingw-w64-x86_64-gtk2
-mv /mingw64/bin/gtkwave /mingw64/bin/gtkwave-gtk3
-mv /mingw64/bin/gtkwave-gtk2 /mingw64/bin/gtkwave
-
 # Install VUnit from sources (master branch)
 git clone --recurse-submodules https://github.com/VUnit/vunit
 cd vunit
