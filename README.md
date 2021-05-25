@@ -3,6 +3,8 @@
   -->
   <a title="GitHub Actions workflow 'Doc'" href="https://github.com/umarcor/SIEAV/actions?query=workflow%3ADoc"><img src="https://img.shields.io/github/workflow/status/umarcor/SIEAV/Doc/main?longCache=true&style=flat-square&label=Doc&logo=GitHub%20Actions&logoColor=fff"></a><!--
   -->
+  <a title="GitHub Actions workflow 'Test'" href="https://github.com/umarcor/SIEAV/actions?query=workflow%3ATest"><img src="https://img.shields.io/github/workflow/status/umarcor/SIEAV/Test/main?longCache=true&style=flat-square&label=Test&logo=GitHub%20Actions&logoColor=fff"></a><!--
+  -->
   <a title="Open ready-to-use Gitpod workspace" href="https://gitpod.io/#https://github.com/umarcor/msea"><img src="https://img.shields.io/badge/Gitpod-workspace-ff8e08?longCache=true&style=flat-square&logo=gitpod"></a><!--
   -->
 </p>
