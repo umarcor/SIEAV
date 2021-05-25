@@ -19,16 +19,24 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# IMPORTANT: This script needs to be executed on an environment with an screen, since GTKWave is executed at the end.
+set -e
 
 # Update the MSYS2 installation (sync repos and install newer packages)
 pacman -Syu --noconfirm
 
 # Install the dependencies for simulation and synthesis of VHDL is FLOSS tools
 pacman -S --noconfirm p7zip git \
-    mingw-w64-x86_64-yosys \
-    mingw-w64-x86_64-gtkwave \
-    mingw-w64-x86_64-python-pip
+    mingw-w64-"${MSYSTEM_CARCH}"-yosys \
+    mingw-w64-"${MSYSTEM_CARCH}"-gtkwave \
+    mingw-w64-"${MSYSTEM_CARCH}"-python-pip \
+    mingw-w64-"${MSYSTEM_CARCH}"-python-setuptools \
+    mingw-w64-"${MSYSTEM_CARCH}"-python-wheel
+
+if [ -d vunit ]; then
+  printf "\033[31mSubdir 'vunit' exists already.\033[0m\n"
+  printf "\033[31mPlease, remove it and run this script again.\033[0m\n"
+  exit 1
+fi
 
 # Install VUnit from sources (master branch)
 git clone --recurse-submodules https://github.com/VUnit/vunit
@@ -37,4 +45,9 @@ python setup.py install
 
 # Test that the installation of the tools was succesful
 cd examples/vhdl/array_axis_vcs
-python run.py -v -g
+python run.py -v
+
+# On an environment with an screen, GTKWave can be executed:
+if [ -z "$CI" ]; then
+  python run.py -v -g
+fi
