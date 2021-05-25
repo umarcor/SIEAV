@@ -6,7 +6,7 @@
 :repotree: https://github.com/umarcor/MSEA/tree/main/
 :toc-title: Máster en Sistemas Electrónicos Avanzados (MSEA)
 :icons: font
-:docinfo: shared
+:favicon: img/ehu.png
 
 == Introduction
 
