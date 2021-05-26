@@ -62,6 +62,12 @@ jobs:
         git commit -am "update ${{ github.sha }}"
         git push -u origin +HEAD:gh-pages
 
+    - name: 'Upload artifact: SIEAV-CVS-FLOSS.pdf'
+      uses: actions/upload-artifact@v2
+      with:
+        name: SIEAV-CVS-FLOSS
+        path: doc/pdf/SIEAV-CVS-FLOSS.pdf
+
 
   slides:
     runs-on: ubuntu-latest

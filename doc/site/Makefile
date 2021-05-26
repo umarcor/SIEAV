@@ -17,10 +17,22 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-build:
-	asciidoctor \
-	-r asciidoctor-diagram \
-	index.adoc
+pdf:
+	[ -f revnumber.txt ] && REVNUMBER='-a revnumber='"$$(cat revnumber.txt)" || unset REVNUMBER; \
+	asciidoctor-pdf $$REVNUMBER \
+	  -a pdf-theme=pdf-theme.yml \
+	  -r asciidoctor-diagram \
+	  main.adoc \
+	  --out-file ../pdf/SIEAV-CVS-FLOSS.pdf
 
-container:
-	docker run --rm -v /$(PWD)://wrk -w //wrk/doc/site asciidoctor/docker-asciidoctor make
+html:
+	[ -f revnumber.txt ] && REVNUMBER='-a revnumber='"$$(cat revnumber.txt)" || unset REVNUMBER; \
+	asciidoctor $$REVNUMBER \
+	  -r asciidoctor-diagram \
+	  index.adoc
+
+revnumber:
+	git describe | sed 's#\([^-]*-g\)#r\1#;' > revnumber.txt
+
+container: revnumber
+	docker run --rm -v /$(PWD)://wrk/ -w //wrk/doc/site btdi/asciidoctor make pdf html
