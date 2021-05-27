@@ -44,7 +44,7 @@ jobs:
           {icon: '⬛', sys: 'MINGW32', arch: i686,   pkg: 'mcode' },
           {icon: '🟦', sys: 'MINGW64', arch: x86_64, pkg: 'llvm'  },
         ]
-    name: '${{ matrix.icon }} Setup · ${{ matrix.sys }} · ${{ matrix.pkg }}'
+    name: '${{ matrix.icon }} ${{ matrix.sys }} · ${{ matrix.pkg }}'
     defaults:
       run:
         shell: msys2 {0}
@@ -63,5 +63,35 @@ jobs:
     - name: '🧰 Checkout'
       uses: actions/checkout@v2
 
-    - name: '🚧 Setup EDA tools'
+    - name: '🛠️ Setup EDA tools'
       run: ./doc/setup.msys2.sh
+
+    - name: '🚧 Run GHDL User Guide'
+      run: ./ghdl_ug/vunit_run.py
+
+    - name: '🚧 Run Control tests'
+      run: ./control/run.py
+
+
+  Container:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        backend:
+          - mcode
+          - llvm
+    name: '🛳️ Container · ${{ matrix.backend }}'
+    steps:
+
+    - name: '🧰 Checkout'
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+
+    - name: '🚧 Run GHDL User Guide'
+      run: ./.github/dockerRun ${{ matrix.backend }} ./ghdl_ug/vunit_run.py
+
+    - name: '🚧 Run Control tests'
+      run: ./.github/dockerRun ${{ matrix.backend }} ./control/run.py

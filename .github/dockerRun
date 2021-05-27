@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+backend="$1"
+shift
+
+docker run \
+  --rm \
+  -v /$(pwd)://src \
+  -w //src \
+  ghdl/vunit:"$backend"-master \
+  "$@"
