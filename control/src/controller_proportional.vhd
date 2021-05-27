@@ -22,31 +22,24 @@ end p_int;
 
 ---
 
-library ieee;
-package fixed_pkg is new ieee.fixed_generic_pkg;
-
-library ieee;
-use ieee.math_real.trunc;
-
 use work.fixed_pkg.all;
-use work.fixed_pkg.to_sfixed;
-use work.fixed_pkg.to_real;
 
 architecture p_fixed of controller is
-  signal e: signed(8 downto 0);
 
-  signal d : sfixed(4 downto -4);
+  signal e: signed(8 downto 0);
 
   subtype c_t is sfixed(2 downto 0);
   constant c : c_t := to_sfixed(2, c_t'left, c_t'right);
 
-  signal p : sfixed(d'left+c'left+1 downto d'right+c'right);
+  subtype o_t is sfixed(3 downto -4);
+
+  signal p : sfixed(c'left+e'length downto c'right);
+
 begin
 
   e <= resize(signed(R),e)-signed(I);
-  d <= to_sfixed(std_logic_vector(e), d);
 
-  p <= c * d;
+  p <= c * to_sfixed(std_logic_vector(e), 4, -4);
 
   process(CLK)
   begin
@@ -54,10 +47,9 @@ begin
       if rst then
         O <= (others=>'0');
       elsif EN then
-        O <= to_slv(p(d'left+c'right downto d'left+c'right-O'length+1));
+        O <= to_slv(resize(p, o_t'left, o_t'right));
       end if;
     end if;
   end process;
 
 end p_fixed;
-
