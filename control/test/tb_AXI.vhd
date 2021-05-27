@@ -13,12 +13,9 @@ end entity;
 
 architecture arch of tb_AXI is
 
-  constant c_clk : time := 5 ns;
-  constant c_axi_aclk : time := 5 ns;
+  -- AXI-Lite interface
 
-  signal clk : std_logic := '0';
-  signal rst : std_logic := '0';
-
+  constant c_axi_aclk       : time := 5 ns;
   constant c_axi_data_width : integer := 16;
   constant c_axi_addr_width : integer := 4;
 
@@ -49,22 +46,26 @@ architecture arch of tb_AXI is
     address_length => axi_awaddr'length
   );
 
+  -- System clock, reset and enables
+
+  constant c_clk : time := 5 ns;
+
+  signal clk : std_logic := '0';
+  signal rst : std_logic := '0';
   signal en_c, en_p: std_logic;
+
+  -- System I/O
 
   signal plant_i : std_logic_vector(7 downto 0) := (others=>'0');
   signal plant_o : std_logic_vector(7 downto 0) := (others=>'0');
 
-begin
-
-  p_main: process
+  -- Procedure for running the test WITHOUT foreign functions/procedures
+  procedure simTest(
+    signal net : inout network_t
+  ) is
     variable tmp : std_logic_vector(axi_rdata'range);
-  begin
-    test_runner_setup(runner, runner_cfg);
-    report "start simulation";
 
-    rst <= '1';
-    wait for 5*c_clk;
-    rst <= '0';
+  begin
 
     write_bus(net, bus_handle, x"0", x"2211");
     write_bus(net, bus_handle, x"2", x"4433");
@@ -90,6 +91,84 @@ begin
     write_bus(net, bus_handle, x"0", x"5555");
 
     wait for 100 us;
+  end procedure;
+
+  -- Procedure for running the test WITH foreign functions/procedures
+  procedure cosimTest(
+    signal net : inout network_t
+  ) is
+
+    type params_t is array (0 to 3) of real;
+    type params_acc_t is access params_t;
+
+    impure function getParamsPtr return params_acc_t is
+    begin report "VHPIDIRECT getParamsPtr" severity failure; end;
+    attribute foreign of getParamsPtr : function is "VHPIDIRECT getParamsPtr";
+
+    variable params : params_acc_t := getParamsPtr;
+
+    procedure handleInterrupt is
+    begin report "VHPIDIRECT handleInterrupt" severity failure; end;
+    attribute foreign of handleInterrupt : procedure is "VHPIDIRECT handleInterrupt";
+
+    variable tmp : std_logic_vector(axi_wdata'length-1 downto 0);
+
+    use work.fixed_pkg.to_sfixed;
+    use work.fixed_pkg.to_slv;
+
+  begin
+
+    -- Double/real parameters retrieved from C are converted to 16 bit std_logic_vectors
+    -- (then, sent to the AXI-Lite VCs through the bus handle)
+
+    tmp := to_slv(to_sfixed(params(0), 11, -4));
+    info("Ref: " & to_string(tmp) & " " & to_string(params(0)));
+    write_bus(net, bus_handle, x"0", tmp);
+
+    tmp := to_slv(to_sfixed(params(1), 2, -13));
+    info("Kp:  " & to_string(tmp) & " " & to_string(params(1)));
+    write_bus(net, bus_handle, x"2", to_slv(to_sfixed(params(1), 2, -13)));
+
+    tmp := to_slv(to_sfixed(params(2), 2, -13));
+    info("Ki:  " & to_string(tmp) & " " & to_string(params(2)));
+    write_bus(net, bus_handle, x"4", to_slv(to_sfixed(params(2), 2, -13)));
+
+    tmp := to_slv(to_sfixed(params(3), 2, -13));
+    info("Kd:  " & to_string(tmp) & " " & to_string(params(3)));
+    write_bus(net, bus_handle, x"6", to_slv(to_sfixed(params(3), 2, -13)));
+
+    -- Call the foreign interrupt handle routine once every 100 us, 6 times
+    for x in 0 to 5 loop
+      wait for 100 us;
+      handleInterrupt;
+
+      -- After each call to the interrupt handle routine, update the Ref
+
+      tmp := to_slv(to_sfixed(params(0), 11, -4));
+      info("Ref: " & to_string(tmp) & " " & to_string(params(0)));
+      write_bus(net, bus_handle, x"0", tmp);
+    end loop;
+
+  end procedure;
+
+begin
+
+  p_main: process
+  begin
+    test_runner_setup(runner, runner_cfg);
+    report "start simulation";
+
+    rst <= '1';
+    wait for 5*c_clk;
+    rst <= '0';
+
+    while test_suite loop
+      if run("cosim") then
+        cosimTest(net);
+      elsif run("sim") then
+        simTest(net);
+      end if;
+    end loop;
 
     report "end of test";
     test_runner_cleanup(runner);
@@ -121,6 +200,7 @@ begin
     bresp   => axi_bresp
   );
 
+  -- The Design, the entity/component which is to be synthesised at the end of the development
   uut: entity work.DesignTop
   port map (
     CONTROLLER_CLK => clk,
@@ -152,6 +232,8 @@ begin
     PLANT_O => plant_o
   );
 
+  -- Simulation model of the plant, the hardware outside of the FPGA
+  -- (might include modelling actuators and/or capture devices)
   i_plant: entity work.plant
   port map (
     CLK => clk,
@@ -161,6 +243,12 @@ begin
     O   => plant_o
   );
 
+  -- Modelling of multiple clock domains for the controller and the plant.
+  -- For now, a single clock and different enable signals are used.
+  -- In practice, the time domain of the plant and the controller are unrelated.
+  -- Therefore, the plant should have its own time constant.
+  -- The controller is likely to require a board specific instantiation of some PLL/DCM/MMCM.
+  -- Hence, it makes sense to keep it outside of the UUT.
   b_clks: block
     signal cnt_c, cnt_p: unsigned(7 downto 0);
   begin
