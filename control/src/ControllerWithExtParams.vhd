@@ -1,6 +1,7 @@
 library ieee;
 context ieee.ieee_std_context;
 
+-- A SISO (PID) controller with inputs for Ref, Kp, Ki, Kd
 entity ControllerWithExtParams is
   port (
     CLK : in  std_logic;
@@ -17,32 +18,33 @@ end entity;
 
 ---
 
-library ieee;
-package fixed_pkg is new ieee.fixed_generic_pkg;
-
-library ieee;
-use ieee.math_real.trunc;
-
 use work.fixed_pkg.all;
-use work.fixed_pkg.to_sfixed;
-use work.fixed_pkg.to_real;
 
+-- Architecture of a proportional controller
+-- The facade for Ki and Kd is provided, but are not used
 architecture arch of ControllerWithExtParams is
 
   signal e: signed(8 downto 0);
-  signal d : sfixed(4 downto -4);
 
-  subtype c_t is sfixed(2 downto 0);
-  constant c : c_t := to_sfixed(2, c_t'left, c_t'right);
+  signal K_p : sfixed(2 downto -13);
+  signal K_i : sfixed(2 downto -13);
+  signal K_d : sfixed(2 downto -13);
 
-  signal p : sfixed(d'left+c'left+1 downto d'right+c'right);
+  signal p : sfixed(K_p'left+e'length downto K_p'right);
+
+  subtype o_t is sfixed(3 downto -4);
 
 begin
 
-  e <= resize(signed(R),e)-signed(I);
-  d <= to_sfixed(std_logic_vector(e), d);
+  K_p <= to_sfixed(KP, K_p);
+  K_i <= to_sfixed(KP, K_i);
+  K_d <= to_sfixed(KP, K_d);
 
-  p <= c * d;
+  e <= resize(signed(R),e)-signed(I);
+
+  -- Proportional ONLY (K_i and K_d unused)
+  -- Note the optional interpretation of the error signal as a fixed-point value
+  p <= K_p * to_sfixed(std_logic_vector(e), 4, -4);
 
   process(CLK)
   begin
@@ -50,7 +52,7 @@ begin
       if rst then
         O <= (others=>'0');
       elsif EN then
-        O <= to_slv(p(d'left+c'right downto d'left+c'right-O'length+1));
+        O <= to_slv(resize(p, o_t'left, o_t'right));
       end if;
     end if;
   end process;
