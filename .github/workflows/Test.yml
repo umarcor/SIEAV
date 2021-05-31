@@ -67,10 +67,10 @@ jobs:
       run: ./doc/setup.msys2.sh
 
     - name: '🚧 Run GHDL User Guide'
-      run: ./ghdl_ug/vunit_run.py
+      run: ./ghdl_ug/vunit_run.py -v
 
     - name: '🚧 Run Control tests'
-      run: ./control/run.py
+      run: ./control/run.py -v
 
 
   Container:
@@ -91,7 +91,7 @@ jobs:
         submodules: recursive
 
     - name: '🚧 Run GHDL User Guide'
-      run: ./.github/dockerRun ${{ matrix.backend }} ./ghdl_ug/vunit_run.py
+      run: ./.github/dockerRun ${{ matrix.backend }} ./ghdl_ug/vunit_run.py -v
 
     - name: '🚧 Run Control tests'
-      run: ./.github/dockerRun ${{ matrix.backend }} ./control/run.py
+      run: ./.github/dockerRun ${{ matrix.backend }} ./control/run.py -v
