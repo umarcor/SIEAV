@@ -1,4 +1,4 @@
-= Co-simulation and behavioural verification with VHDL, C/C++ and Python/m: Máster en Sistemas Electrónicos Avanzados (SIEAV)
+= Co-simulation and behavioural verification with VHDL, C/C++ and Python/m: A tutorial
 :author: Unai Martinez-Corral
 :email: unai.martinezcorral[at]ehu[dot]eus
 :title-page:

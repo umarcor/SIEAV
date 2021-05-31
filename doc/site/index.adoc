@@ -9,8 +9,4 @@
 :toclevels: 4
 :favicon: img/ehu.png
 
-Máster en Sistemas Electrónicos Avanzados (SIEAV)
-
-University of the Basque Country (UPV/EHU)
-
 include::content.adoc[]

@@ -1,6 +1,24 @@
-== Introduction
+[NOTE]
+====
+This repository and documentation contain resources used in some sessions of the "_Cosimulation for verification of
+systems on FPGAs_" ("_Cosimulación para la verificación de sistemas sobre FPGAs_") course unit taught in the
+https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados[Master on Advanced Electronic Systems (Máster en Sistemas Electrónicos Avanzados)]
+at the https://www.ehu.eus[University of the Basque Country (UPV/EHU)].
+Find the syllabus:
+https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20190&p_anyo_pop=20170&p_cod_centro=345&p_cod_materia=9117&p_cod_asignatura=504738&p_tipo_asignatura=1[2019/2020],
+https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20200&p_anyo_pop=20170&p_cod_centro=345&p_cod_materia=9117&p_cod_asignatura=504738&p_tipo_asignatura=1[2020/2021].
 
-This repository and documentation contain resources for some sessions of the "_Cosimulation for verification of systems on FPGAs_" ("_Cosimulación para la verificación de sistemas sobre FPGAs_") course unit taught in the https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados[Master on Advanced Electronic Systems (Máster en Sistemas Electrónicos Avanzados)] at the https://www.ehu.eus[University of the Basque Country (UPV/EHU)]. Find the syllabus: https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20190&p_anyo_pop=20170&p_cod_centro=345&p_cod_materia=9117&p_cod_asignatura=504738&p_tipo_asignatura=1[2019/2020], https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20200&p_anyo_pop=20170&p_cod_centro=345&p_cod_materia=9117&p_cod_asignatura=504738&p_tipo_asignatura=1[2020/2021].
+These sessions are a follow-up of the course unit "_Design of digital controllers with FPGAs_" ("_Diseño de
+controladores digitales con FPGAs_") taught in the same master degree (https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20200&p_anyo_pop=20170&p_cod_centro=345&p_cod_materia=9120&p_cod_asignatura=504740&p_tipo_asignatura=1[2020/2021]).
+Hence, attendants are expected to have prior knowledge about the fundamentals of control theory (discretization of state-space representation and transfer-functions, sampling and PID algorithms/implementations).
+Nonetheless, these sessions are focused on VHDL language features, not on control.
+
+The course is taught in spanish and/or basque (for now); so, some references might not be available in english (yet).
+Still, most of the documentation and code examples should be readable to any english speaker.
+Should you find any issue in this regard, please https://github.com/umarcor/SIEAV/issues/new[let us know]!
+====
+
+== Introduction
 
 The summary of these sessions is the following:
 
@@ -17,10 +35,6 @@ The summary of these sessions is the following:
 *** Introduction to VUnit's AXI http://vunit.github.io/verification_components/user_guide.html[verification components].
 *** Direct cosimulation: VHDL and C/Python.
 * Assignment/exercise: SISO AXI4 Stream DSP core.
-
-NOTE: These sessions are based on the course unit "_Design of digital controllers with FPGAs_" ("_Diseño de controladores digitales con FPGAs_") taught in the same master degree (https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20200&p_anyo_pop=20170&p_cod_centro=345&p_cod_materia=9120&p_cod_asignatura=504740&p_tipo_asignatura=1[2020/2021]). Hence, attendants are expected to have prior knowledge about the fundamentals of control theory (discretization of state-space representation and transfer-functions, sampling and PID algorithms/implementations). Nonetheless, these sessions are focused on VHDL language features, not on control.
-
-IMPORTANT: These sessions are taught in spanish and/or basque; so, some references might not be available in english. Still, most of the documentation and code examples should be readable to any english speaker. Should you find any issue in this regard, please https://github.com/umarcor/SIEAV/issues/new[let us know]!
 
 === Development Environment 101
 
