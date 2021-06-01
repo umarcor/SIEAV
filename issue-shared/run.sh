@@ -21,7 +21,7 @@ mv libcaux.so subdir/
 
 export LD_LIBRARY_PATH="$ORIG_LD_LIBRARY_PATH:$(pwd)/subdir"
 
-ghdl elab-run tb
+ghdl elab-run -Wl,-L./subdir tb
 echo "Successfully run with subdir/libcaux.so"
 
 rm -rf *.o *.cf *.so
