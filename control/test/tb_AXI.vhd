@@ -103,13 +103,13 @@ architecture arch of tb_AXI is
 
     impure function getParamsPtr return params_acc_t is
     begin report "VHPIDIRECT getParamsPtr" severity failure; end;
-    attribute foreign of getParamsPtr : function is "VHPIDIRECT getParamsPtr";
+    attribute foreign of getParamsPtr : function is "VHPIDIRECT libcaux.so getParamsPtr";
 
     variable params : params_acc_t := getParamsPtr;
 
     procedure handleInterrupt is
     begin report "VHPIDIRECT handleInterrupt" severity failure; end;
-    attribute foreign of handleInterrupt : procedure is "VHPIDIRECT handleInterrupt";
+    attribute foreign of handleInterrupt : procedure is "VHPIDIRECT libcaux.so handleInterrupt";
 
     variable tmp : std_logic_vector(axi_wdata'length-1 downto 0);
 

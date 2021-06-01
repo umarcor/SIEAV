@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
+from os import environ, name
 from pathlib import Path
+from subprocess import check_call
 from vunit import VUnit
 
 ROOT = Path(__file__).resolve().parent
@@ -14,7 +16,10 @@ LIB.add_source_files([
     ROOT / "test" / "*.vhd",
 ])
 
-for tb in LIB.get_test_benches(pattern="*tb_axi*", allow_empty=False):
-    tb.set_sim_option("ghdl.elab_flags", ["-Wl," + str(ROOT / "c" / "caux.c")])
+check_call(["gcc", "-fPIC", "-shared", str(ROOT / "c" / "caux.c"), "-o", "libcaux.so"])
+
+if name == 'posix':
+    LDPATH = environ.get("LD_LIBRARY_PATH")
+    environ["LD_LIBRARY_PATH"] = (LDPATH + ":" if LDPATH else '') + "."
 
 VU.main()
