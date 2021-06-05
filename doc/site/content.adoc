@@ -22,6 +22,14 @@ NOTE: These sessions are based on the course unit "_Design of digital controller
 
 IMPORTANT: These sessions are taught in spanish and/or basque; so, some references might not be available in english. Still, most of the documentation and code examples should be readable to any english speaker. Should you find any issue in this regard, please https://github.com/umarcor/SIEAV/issues/new[let us know]!
 
+=== Development Environment 101
+
+* https://missing.csail.mit.edu[missing.csail.mit.edu: The Missing Semester of Your CS Education]
+* https://lab.github.com[lab.github.com]
+* https://unixgame.io/unix50[The UNIX Game]
+* https://github.com/ossu/computer-science[Open Source Society University: Computer Science]
+* https://www.debuggingbook.org[debuggingbook.org]
+
 == VHDL, a programming language
 
 * Analysis, elaboration and runtime
