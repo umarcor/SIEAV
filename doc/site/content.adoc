@@ -44,6 +44,15 @@ The summary of these sessions is the following:
 * https://github.com/ossu/computer-science[Open Source Society University: Computer Science]
 * https://www.debuggingbook.org[debuggingbook.org]
 
+* https://guides.github.com/[guides.github.com]
+** https://guides.github.com/introduction/git-handbook/[Git Handbook]
+** https://guides.github.com/introduction/flow/[Understanding the GitHub flow]
+* https://training.github.com/[training.github.com: Git Cheat Sheets]
+* https://git-school.github.io/visualizing-git/[git-school.github.io: Visualizing Git]
+* https://learngitbranching.js.org/[learngitbranching.js.org]
+* https://github.com/jlord/git-it-electron[Git-it]
+* https://ohshitgit.com/[ohshitgit.com]
+
 == VHDL, a programming language
 
 * Analysis, elaboration and runtime
