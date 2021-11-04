@@ -91,6 +91,8 @@ _TBC_
 [bibliography]
 == References
 
+* https://gitlab.com/sepagierm/sepa-practicas
+
 [bibliography]
 .Books
 - [[[taoup]]] Eric Steven Raymond. 'The Art of Unix Programming'. Addison-Wesley. ISBN 0-13-142901-9.
