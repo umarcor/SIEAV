@@ -6,10 +6,11 @@ https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados[Master 
 at the https://www.ehu.eus[University of the Basque Country (UPV/EHU)].
 Find the syllabus:
 https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20190&p_anyo_pop=20170&p_cod_centro=345&p_cod_materia=9117&p_cod_asignatura=504738&p_tipo_asignatura=1[2019/2020],
-https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20200&p_anyo_pop=20170&p_cod_centro=345&p_cod_materia=9117&p_cod_asignatura=504738&p_tipo_asignatura=1[2020/2021].
+https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20200&p_anyo_pop=20170&p_cod_centro=345&p_cod_materia=9117&p_cod_asignatura=504738&p_tipo_asignatura=1[2020/2021],
+https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20210&p_anyo_pop=20170&p_cod_centro=345&p_cod_materia=9117&p_cod_asignatura=504738&p_tipo_asignatura=1[2021/2022].
 
 These sessions are a follow-up of the course unit "_Design of digital controllers with FPGAs_" ("_Diseño de
-controladores digitales con FPGAs_") taught in the same master degree (https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20200&p_anyo_pop=20170&p_cod_centro=345&p_cod_materia=9120&p_cod_asignatura=504740&p_tipo_asignatura=1[2020/2021]).
+controladores digitales con FPGAs_") taught in the same master degree (https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20210&p_anyo_pop=20170&p_cod_centro=345&p_cod_materia=9120&p_cod_asignatura=504740&p_tipo_asignatura=1[2021/2022]).
 Hence, attendants are expected to have prior knowledge about the fundamentals of control theory (discretization of state-space representation and transfer-functions, sampling and PID algorithms/implementations).
 Nonetheless, these sessions are focused on VHDL language features, not on control.
 
