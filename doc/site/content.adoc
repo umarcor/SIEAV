@@ -92,6 +92,8 @@ _TBC_
 == References
 
 * https://gitlab.com/sepagierm/sepa-practicas
+* https://gitlab.com/edcmit/edc-practicas
+* https://heimdall.us.es/docs/docencia/EDCMIT/
 
 [bibliography]
 .Books
