@@ -47,7 +47,7 @@ jobs:
       run: make -C doc/site container
 
     - name: Publish site to gh-pages (doc)
-      if: github.event_name != 'pull_request' && github.repository == 'umarcor/MSEA'
+      if: github.event_name != 'pull_request'
       run: |
         mkdir pages
         cd pages
