@@ -92,9 +92,12 @@ _TBC_
 [bibliography]
 == References
 
-* https://gitlab.com/sepagierm/sepa-practicas
-* https://gitlab.com/edcmit/edc-practicas
-* https://heimdall.us.es/docs/docencia/EDCMIT/
+* https://umarcor.github.io/osvb/[umarcor/osvb: Open Source Verification Bundle (OSVB)]
+* https://edaa-org.github.io/[Electronic Design Automation Abstraction (EDA²)]
+* https://stnolting.github.io/neorv32/[NEORV32]
+* https://gitlab.com/sepagierm/sepa-practicas[sepagierm/sepa-practicas]
+* https://gitlab.com/edcmit/edc-practicas[edcmit/edc-practicas]
+* https://heimdall.us.es/docs/docencia/EDCMIT/[heimdall.us.es/docs/docencia/EDCMIT]
 
 [bibliography]
 .Books
