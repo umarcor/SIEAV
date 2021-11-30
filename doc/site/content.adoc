@@ -98,6 +98,7 @@ _TBC_
 * https://gitlab.com/sepagierm/sepa-practicas[sepagierm/sepa-practicas]
 * https://gitlab.com/edcmit/edc-practicas[edcmit/edc-practicas]
 * https://heimdall.us.es/docs/docencia/EDCMIT/[heimdall.us.es/docs/docencia/EDCMIT]
+* https://gitlab.com/hgpub[gitlab.com/hgpub]
 
 [bibliography]
 .Books
