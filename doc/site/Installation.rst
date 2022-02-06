@@ -10,4 +10,10 @@ Installation of
 :awesome:`ghdl-yosys-plugin`
 and :awesome:`Yosys <yosys>`.
 
+* :gh:`hdl/packages`
+
+  * :gh:`hdl/containers`
+
+  * :gh:`hdl/MINGW-packages`
+
 *TBC*
