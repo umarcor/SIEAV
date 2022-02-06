@@ -22,14 +22,9 @@ name: Doc
 on:
   pull_request:
   push:
-    paths:
-      - '.github/workflows/Doc.yml'
-      - 'doc/**'
   schedule:
     - cron: '0 0 * * 4'
   workflow_dispatch:
-  repository_dispatch:
-    types: [ Doc ]
 
 env:
   DOCKER_BUILDKIT: 1
@@ -37,36 +32,18 @@ env:
 jobs:
 
 
-  asciidoc:
+  Site:
     runs-on: ubuntu-latest
     steps:
 
-    - uses: actions/checkout@v2
+    - name: 🧰 Checkout
+      uses: actions/checkout@v2
 
-    - name: Build site
-      run: make -C doc/site container
-
-    - name: Publish site to gh-pages (doc)
-      if: github.event_name != 'pull_request'
-      run: |
-        mkdir pages
-        cd pages
-        git init
-        cp ../.git/config ./.git/config
-        touch .nojekyll
-        mv ../doc/site/index.html ./
-        cp -vr ../doc/site/img ./
-        git add .
-        git config --local user.email "push@gha"
-        git config --local user.name "GHA"
-        git commit -am "update ${{ github.sha }}"
-        git push -u origin +HEAD:gh-pages
-
-    - name: 'Upload artifact: SIEAV-CVS-FLOSS.pdf'
-      uses: actions/upload-artifact@v2
+    - name: 📓 Build The Docs
+      uses: buildthedocs/btd@v0
       with:
-        name: SIEAV-CVS-FLOSS
-        path: doc/pdf/SIEAV-CVS-FLOSS.pdf
+        token: ${{ github.token }}
+        skip-deploy: github.event_name == 'pull_request'
 
 
   slides:

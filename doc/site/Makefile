@@ -1,7 +1,7 @@
 # Authors:
 #   Unai Martinez-Corral
 #
-# Copyright 2021 Unai Martinez-Corral <unai.martinezcorral@ehu.eus>
+# Copyright 2021-2022 Unai Martinez-Corral <unai.martinezcorral@ehu.eus>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,22 +17,14 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-pdf:
-	[ -f revnumber.txt ] && REVNUMBER='-a revnumber='"$$(cat revnumber.txt)" || unset REVNUMBER; \
-	asciidoctor-pdf $$REVNUMBER \
-	  -a pdf-theme=pdf-theme.yml \
-	  -r asciidoctor-diagram \
-	  main.adoc \
-	  --out-file ../pdf/SIEAV-CVS-FLOSS.pdf
+SPHINXOPTS    =
+SPHINXBUILD   = sphinx-build
+PAPER         =
+BUILDDIR      = _build
 
-html:
-	[ -f revnumber.txt ] && REVNUMBER='-a revnumber='"$$(cat revnumber.txt)" || unset REVNUMBER; \
-	asciidoctor $$REVNUMBER \
-	  -r asciidoctor-diagram \
-	  index.adoc
+PAPEROPT_a4     = -D latex_paper_size=a4
+PAPEROPT_letter = -D latex_paper_size=letter
+ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees -T -D language=en $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
-revnumber:
-	git describe | sed 's#\([^-]*-g\)#r\1#;' > revnumber.txt
-
-container: revnumber
-	docker run --rm -v /$(PWD)://wrk/ -w //wrk/doc/site btdi/asciidoctor make pdf html
+%:
+	$(SPHINXBUILD) -b $@ $(ALLSPHINXOPTS) $(BUILDDIR)/$@

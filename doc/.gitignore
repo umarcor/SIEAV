@@ -1,5 +1,5 @@
-/site/index.html
-/site/revnumber.txt
+/site/_build/
+/site/_theme/
 
 *.bak
 *Thumbs.db
