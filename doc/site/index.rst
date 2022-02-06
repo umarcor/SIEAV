@@ -17,6 +17,7 @@ Co-simulation and behavioural verification with VHDL, C/C++ and Python/m
 
   Home <http://umarcor.github.io/SIEAV>
   VHDL
+  Co-design
   Installation
   VUnit
   Control
