@@ -8,3 +8,9 @@ Hardware-software co-design
    :align: center
 
    Summary of software-hardware co-execution solutions.
+
+.. figure:: _static/img/vboard.png
+   :width: 100%
+   :align: center
+
+   :gh:`dbhi/vboard`: virtual development board for HDL design.
