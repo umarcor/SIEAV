@@ -39,6 +39,11 @@ jobs:
     - name: 🧰 Checkout
       uses: actions/checkout@v2
 
+    - name: 🛠️ Get bib files from umarcor/umarcor
+      run: |
+        make -C doc/site references
+        ls -la doc/site/references
+
     - name: 📓 Build The Docs
       uses: buildthedocs/btd@v0
       with:

@@ -5,6 +5,8 @@ VHDL, a programming language
 
 *Verification and Hardware Description Language* (VHDL) is not a hardware description language only (anymore)!
 
+:cite:p:`1076-2008`
+
 * Analysis, elaboration and runtime
 * Unified compilation tools
 * Hardware Description Languages
@@ -18,5 +20,7 @@ VHDL, a programming language
    :align: center
 
    GHDL, a VHDL toolkit.
+
+:cite:p:`gh:ghdl`
 
 *TBC*

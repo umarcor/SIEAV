@@ -1,5 +1,6 @@
 /site/_build/
 /site/_theme/
+/site/references/
 
 *.bak
 *Thumbs.db

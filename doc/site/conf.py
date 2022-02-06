@@ -33,8 +33,21 @@ ROOT = Path(__file__).resolve().parent
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.extlinks",
-    "sphinx.ext.intersphinx"
+    "sphinx.ext.intersphinx",
+    "sphinxcontrib.bibtex",
 ]
+
+bibtex_default_style = 'plain'
+bibfiles = [
+    ROOT / 'references/CoSim.bib',
+    ROOT / 'references/FLOSS.bib',
+    ROOT / 'references/Standards.bib',
+    ROOT / 'references/Verification.bib',
+]
+bibtex_bibfiles = [str(item) for item in bibfiles]
+for item in bibfiles:
+    if not item.exists():
+        raise Exception(f"Bibliography file {item} does not exist!")
 
 templates_path = ["_templates"]
 

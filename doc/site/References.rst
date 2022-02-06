@@ -10,3 +10,6 @@ References
 * `edcmit/edc-practicas <https://gitlab.com/edcmit/edc-practicas>`__
 * `heimdall.us.es/docs/docencia/EDCMIT <https://heimdall.us.es/docs/docencia/EDCMIT>`__
 * `gitlab.com/hgpub <https://gitlab.com/hgpub>`__
+
+.. bibliography::
+  :labelprefix: R
