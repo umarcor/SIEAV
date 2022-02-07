@@ -163,12 +163,15 @@ intersphinx_mapping = {
     "constraints": ("https://hdl.github.io/constraints", None),
     "edaa":        ("https://edaa-org.github.io", None),
     "qus":         ("https://dbhi.github.io/qus", None),
+    "vasg":        ("https://ieee-p1076.gitlab.io", None),
+    "osvb":        ("https://umarcor.github.io/osvb", None),
+    "vunit":       ("http://vunit.github.io", None)
 }
 
 # -- Sphinx.Ext.ExtLinks -----------------------------------------------------------------------------------------------
 
 extlinks = {
-    "wikipedia": ("https://en.wikipedia.org/wiki/%s", None),
+    "wikipedia": ("https://en.wikipedia.org/wiki/%s", "wikipedia:"),
     "awesome":   ("https://hdl.github.io/awesome/items/%s", ""),
     "gh":        ("https://github.com/%s", "gh:"),
     "ghsharp":   ("https://github.com/umarcor/SIEAV/issues/%s", "#"),

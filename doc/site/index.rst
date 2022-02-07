@@ -6,11 +6,7 @@ Co-simulation and behavioural verification with VHDL, C/C++ and Python/m
    :align: center
    :target: https://github.com/umarcor/SIEAV
 
-.. raw:: html
-
-    <br>
-
-.. include:: Introduction.rst
+.. include:: Introduction.inc
 
 .. toctree::
   :hidden:
