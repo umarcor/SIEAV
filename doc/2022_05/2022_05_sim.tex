@@ -273,20 +273,26 @@ Open source unit testing framework for VHDL/SystemVerilog to realize continuous 
 \end{frame}
 
 \begin{frame}
-\frametitle{Exercises: introduction}
+\frametitle{Exercises: introduction to VUnit}
 \vfill
 \begin{center}
 VUnit User Guide \href{http://vunit.github.io/user_guide.html}{\faBook}
 \end{center}
 \vfill
 \begin{itemize}
-  \item Add \lstinline{run.py} to Full-adder
+  \item Add \lstinline{run.py} to the Full-adder example from GHDL's Quick Start Guide:
+  \begin{itemize}
+    \item Copy it from the VUnit User Guide and adapt it if needed.
+    \item Modify the testbench to add the VUnit library/context, the runner generic and the setup and cleanup calls.
+  \end{itemize}
 \end{itemize}
+\vfill
+Find further exercises at \href{https://github.com/VUnit/tdd-intro/tree/master/tutorial}{github.com/VUnit/tdd-intro: tutorial~\faGithub}
 \vfill
 \end{frame}
 
 \begin{frame}
-\frametitle{Exercises: libraries}
+\frametitle{VUnit: libraries}
 \begin{itemize}
   \item Run
   \href{http://vunit.github.io/run/user_guide.html}{\faBook}
@@ -332,24 +338,24 @@ VUnit User Guide \href{http://vunit.github.io/user_guide.html}{\faBook}
 \end{frame}
 
 \begin{frame}
-\frametitle{Exercises: verification components}
+\frametitle{VUnit: verification components}
 \begin{center}
 Verification Component Library (VCL) \href{http://vunit.github.io/verification_components/user_guide.html}{\faBook}
 \end{center}
 \vfill
 \begin{itemize}
-  \item uart
-  \href{https://github.com/VUnit/vunit/tree/master/examples/vhdl/uart}{\faCode}
+  \item A simple example: uart \href{https://github.com/VUnit/vunit/tree/master/examples/vhdl/uart}{\faCode}
+
+  \item A complex example: axi\_dma \href{https://github.com/VUnit/vunit/tree/master/examples/vhdl/axi_dma}{\faCode}
 
   \vfill
 
-  \item array\_axis\_vcs
+  \item Exercise: analyse and understand example array\_axis\_vcs
   \href{https://github.com/VUnit/vunit/tree/master/examples/vhdl/array_axis_vcs}{\faCode}
 
   \vfill
 
-  \item axi\_dma
-  \href{https://github.com/VUnit/vunit/tree/master/examples/vhdl/axi_dma}{\faCode}
+  \includegraphics[width=.85\linewidth]{matrices_array_axis_vcs}
 \end{itemize}
 \vfill
 \end{frame}
@@ -385,36 +391,97 @@ Verification Component Library (VCL) \href{http://vunit.github.io/verification_c
 \href{https://vunit.github.io/cosim/}{\faBook}
 \end{itemize}
 \end{itemize}
+
+\vfill
+\centering
+\href{https://larsasplund.github.io/github-facts}{GitHub Facts About the HDL Industry~\faGlobe}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Open Source Bazaar}
+  \centering
+  \vfill
+  \begin{tabular}{ccc}
+  VUnit & Python & \\
+  OSVVM & & TCL \\
+  cocotb & Python & Make\\
+  UVVM & Python & Bash\\
+  SVUnit & Python & Perl \\
+  \end{tabular}
+  \vfill
+  \begin{tabular}{ccc}
+  FuseSoc, Edalize, fsva & Python, Make, TCL, Bash & YAML\\
+  tsfpga & Python, TCL & \\
+  PoC & Python, TCL & INI \\
+  pyFPGA & Python, Make, TCL, Bash & YAML \\
+  Xeda & Python & \\
+  SiliconCompiler & Python & \\
+  \end{tabular}
+
+
 \end{frame}
 
 \begin{frame}
 \frametitle{Open Source Verification Bundle (OSVB)}
 \centering
-\Large \href{https://umarcor.github.io/osvb}{\faBook~umarcor.github.io/osvb}
+\Large \href{https://umarcor.github.io/osvb}{umarcor.github.io/osvb~\faBook}
 \vfill
-\includegraphics[width=\linewidth]{osvb}
+\href{https://umarcor.github.io/osvb/intro/index.html}{\includegraphics[width=\linewidth]{osvb}}
 \vfill
-\includegraphics[width=2cm]{osvb_logo}
+\href{https://umarcor.github.io/osvb}{\includegraphics[width=2cm]{osvb_logo}}
 \end{frame}
 
 \begin{frame}
 \frametitle{OSVB: pyCAPI}
 \centering
 \vfill
-\includegraphics[width=\linewidth]{pyCAPI}
+\href{https://umarcor.github.io/osvb/apis/core.html}{\includegraphics[width=\linewidth]{pyCAPI}}
 \vfill
-\Large \href{https://umarcor.github.io/osvb/apis/core.html}{\faBook~umarcor.github.io/osvb/apis/core}
+\Large \href{https://umarcor.github.io/osvb/apis/core.html}{umarcor.github.io/osvb/apis/core~\faBook}
 \vfill
+\Large \href{https://edaa-org.github.io/pyEDAA.ProjectModel/}{\includegraphics[height=2em]{pyEDAA_ProjectModel}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{OSVB: Runner}
+  \centering
+  \vfill
+  \href{https://umarcor.github.io/osvb/apis/runner.html}{\includegraphics[width=.5\linewidth]{runner_cfg}}
+  \vfill
+  \Large \href{https://umarcor.github.io/osvb/apis/runner.html}{umarcor.github.io/osvb/apis/runner~\faBook}
+  \vfill
 \end{frame}
 
 \begin{frame}
 \frametitle{OSVB: Open Source Verification Report (OSVR)}
 \centering
-\hspace*{1cm}
-\includegraphics[width=.75\linewidth]{osvr}
+\Large \href{https://umarcor.github.io/osvb/apis/logging.html}{umarcor.github.io/osvb/apis/logging~\faBook}
 \vfill
-\Large \href{https://umarcor.github.io/osvb/apis/logging.html}{\faBook~umarcor.github.io/osvb/apis/logging}
+\hspace*{1.5cm}
+\href{https://umarcor.github.io/osvb/apis/logging.html}{\includegraphics[width=.75\linewidth]{osvr}}
 \vfill
+\Large \href{https://edaa-org.github.io/pyEDAA.Reports/}{\includegraphics[height=2em]{pyEDAA_Reports}}
+\end{frame}
+
+\begin{frame}
+\frametitle{OSVB: Open Source VHDL Design Explorer (OSVDE)}
+\centering
+\Large \href{https://umarcor.github.io/osvb/apis/project/OSVDE.html}{umarcor.github.io/osvb/apis/project/OSVDE~\faBook}
+\vfill
+\href{https://umarcor.github.io/osvb/apis/project/OSVDE.html}{\includegraphics[width=.75\linewidth]{osvde}}
+\vfill
+\Large \href{https://vhdl.github.io/pyVHDLModel/}{\includegraphics[height=2em]{pyVHDLModel}}
+\end{frame}
+
+\begin{frame}
+\frametitle{Electronic Design Automation Abstraction (EDA$^2$)}
+\centering
+\href{https://github.com/edaa-org}{\includegraphics[width=.65\linewidth]{EDAA_banner}}
+\vfill
+\href{https://edaa-org.github.io}{\includegraphics[width=.75\linewidth]{EDAA}}
+\vfill
+\Large \href{https://edaa-org.github.io}{edaa-org.github.io~\faBook}
 \end{frame}
 
 \end{document}
