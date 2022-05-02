@@ -37,7 +37,7 @@ jobs:
     steps:
 
     - name: 🧰 Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: 🛠️ Get bib files from umarcor/umarcor
       run: |
@@ -61,15 +61,16 @@ jobs:
           - 2021_05
     steps:
 
-    - uses: actions/checkout@v2
+    - name: 🧰 Checkout
+      uses: actions/checkout@v3
 
-    - name: Clean subdir 'doc/pdf'
+    - name: 🗑️ Clean subdir 'doc/pdf'
       run: rm -rf doc/pdf/*
 
-    - name: Build slides
+    - name: 🚧 Build slides
       run: make -C doc/${{ matrix.slides }} container
 
-    - name: 'Upload artifact: ${{ matrix.slides }}.pdf'
+    - name: '📤 Upload artifact: ${{ matrix.slides }}.pdf'
       uses: actions/upload-artifact@v2
       with:
         name: ${{ matrix.slides }}

@@ -60,16 +60,16 @@ jobs:
       run: git config --global core.autocrlf input
       shell: bash
 
-    - name: '🧰 Checkout'
-      uses: actions/checkout@v2
+    - name: 🧰 Checkout
+      uses: actions/checkout@v3
 
-    - name: '🛠️ Setup EDA tools'
+    - name: 🛠️ Setup EDA tools
       run: ./doc/setup.msys2.sh
 
-    - name: '🚧 Run GHDL User Guide'
+    - name: 🚧 Run GHDL User Guide
       run: ./ghdl_ug/vunit_run.py -v
 
-    - name: '🚧 Run Control tests'
+    - name: 🚧 Run Control tests
       run: ./control/run.py -v
 
 
@@ -85,13 +85,13 @@ jobs:
     name: '🛳️ Container · ${{ matrix.backend }}'
     steps:
 
-    - name: '🧰 Checkout'
-      uses: actions/checkout@v2
+    - name: 🧰 Checkout
+      uses: actions/checkout@v3
       with:
         submodules: recursive
 
-    - name: '🚧 Run GHDL User Guide'
+    - name: 🚧 Run GHDL User Guide
       run: ./.github/dockerRun ${{ matrix.backend }} ./ghdl_ug/vunit_run.py -v
 
-    - name: '🚧 Run Control tests'
+    - name: 🚧 Run Control tests
       run: ./.github/dockerRun ${{ matrix.backend }} ./control/run.py -v
