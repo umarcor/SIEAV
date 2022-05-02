@@ -63,6 +63,9 @@ jobs:
 
     - uses: actions/checkout@v2
 
+    - name: Clean subdir 'doc/pdf'
+      run: rm -rf doc/pdf/*
+
     - name: Build slides
       run: make -C doc/${{ matrix.slides }} container
 
