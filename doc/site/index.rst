@@ -23,6 +23,7 @@ Co-simulation and behavioural verification with VHDL, C/C++ and Python/m
   :caption: Appendix
   :hidden:
 
+  Slides
   DevEnv101
   License
   Doc-License
