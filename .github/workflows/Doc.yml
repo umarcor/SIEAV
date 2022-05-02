@@ -51,7 +51,7 @@ jobs:
         skip-deploy: github.event_name == 'pull_request'
 
 
-  slides:
+  Slides:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -71,7 +71,32 @@ jobs:
       run: make -C doc/${{ matrix.slides }} container
 
     - name: '📤 Upload artifact: ${{ matrix.slides }}.pdf'
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: ${{ matrix.slides }}
         path: doc/pdf/*.pdf
+
+
+  Release:
+    name: '📦 Release'
+    runs-on: ubuntu-latest
+
+    needs:
+      - Slides
+
+    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || contains(github.ref, 'refs/tags/'))
+
+    steps:
+
+      - name: '📥 Download artifacts'
+        uses: actions/download-artifact@v3
+        with:
+          path: artifacts
+
+      - uses: pyTooling/Actions/releaser@r0
+        with:
+          token: ${{ github.token }}
+          tag: tip
+          files: |
+            artifacts/2020_03/*.pdf
+            artifacts/2021_05/*.pdf
