@@ -74,11 +74,7 @@ begin
     constant Dd : real := -0.9990;
   begin
     if rising_edge(clk) then
-      if rst = '1' then
-        y <= 0.0;
-      else
-        y <= Nd * u - Dd * y;
-      end if;
+      y <= 0.0 when rst else Nd * u - Dd * y;
     end if;
   end process;
 
