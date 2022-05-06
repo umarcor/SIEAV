@@ -248,13 +248,17 @@ Product drawings and engineering specifications progressed from handmade draftin
 \begin{frame}
 \frametitle{HDL simulation: VUnit}
 \small
-Open source unit testing framework for VHDL/SystemVerilog. It features the functionality needed to realize continuous and automated testing of your HDL code. VUnit complements traditional testing methodologies by supporting a \emph{test early and often} approach through automation.
+Open source unit testing framework for VHDL/SystemVerilog to realize continuous and automated testing of HDL code. VUnit complements traditional testing methodologies by supporting a \emph{test early and often} approach through automation.
+
 \vfill
+\href{https://vunit.github.io/}{\includegraphics[width=\linewidth]{VUnit.png}}
+\vfill
+
+\tiny
 \begin{itemize}
-  \item Supported languages: VHDL (93, 2002, 2008, 2019), Verilog, SystemVerilog
-  \item Supported simulators: GHDL, Aldec Riviera-PRO/Active-HDL, Mentor Graphics ModelSim/Questa and Cadence Incisive (experimental)
+  \item Supported languages: VHDL (93, 2002, 2008, 2019), Verilog/SystemVerilog
+  \item Supported simulators: GHDL, Aldec Riviera-PRO/Active-HDL, Mentor Graphics ModelSim/Questa and Cadence Incisive (experimental); on Windows, GNU/Linux and macOS.
   \item Requires Python $>=3.6$: Python Interface and CLI
-  \item Supported on Windows, GNU/Linux and macOS.
   \item VHDL libraries: OSVVM, JSON-for-VHDL, Run, Check, Logging, Communication, Verification Components, etc.
   \item Data Types with an external API for co-simulation
 \end{itemize}
