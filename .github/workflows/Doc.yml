@@ -59,6 +59,7 @@ jobs:
         slides:
           - 2020_03
           - 2021_05
+          - 2022_05
     steps:
 
     - name: 🧰 Checkout
@@ -100,3 +101,4 @@ jobs:
           files: |
             artifacts/2020_03/*.pdf
             artifacts/2021_05/*.pdf
+            artifacts/2022_05/*.pdf
