@@ -65,7 +65,7 @@ For now, synthesis and automatic documentation generation are not included in th
 However, references to FLOSS projects (such as
 :doc:`OSVB <osvb:index>`,
 :doc:`EDA² <edaa:index>`,
-`SymbiFlow <https://symbiflow.github.io/>`__,
+`F4PGA <https://f4pga.org/>`__ (formerly known as `SymbiFlow <https://github.com/SymbiFlow>`__),
 `Renode <https://renode.io/>`__,
 etc.
 ) are provided throughout the documentation.
