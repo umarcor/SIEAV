@@ -199,6 +199,46 @@ Free/Libre {\color{red}\bfseries/=} Open
 \end{frame}
 
 \begin{frame}
+  \frametitle{EDA tooling ecosystem(s)}
+  \begin{center}
+  \includegraphics[width=.9\linewidth]{synthesis}
+
+  \vfill
+
+  hdl/awesome\#98 \href{https://github.com/hdl/awesome/issues/98}{{\faGithub}}
+  \end{center}
+
+  \vfill
+
+  {\tiny
+  Note:
+  Synthesis flows targeting FPGA bitstreams are shown only.
+  Simulation/verification and ASIC targets are not included in this diagram.
+
+  See also:
+  Rodrigo A. Melo.
+  \emph{Free and Open Source Software for FPGA development}.
+  February 2021.
+  \href{http://indico.ictp.it/event/9443/session/258/contribution/587/material/slides/}{\faSlideshare}
+  \href{http://indico.ictp.it/event/9443/session/258/contribution/587/material/video/}{\faVideoCamera}
+  }
+
+  \vfill
+
+  \end{frame}
+
+\note[itemize]{
+  \item  En la última década han surgido y madurado toda una serie de proyectos para traer prácticas y herramientas utilizadas
+     en el desarrollo de software y aplicarlas al desarrollo de hardware.
+  \item  Por razones geopolíticas y económicas, la mayoría de las mismas son open source (no necesariamente software libre).
+  \item  Con cierto delay (casi una década), las empresas relevantes del sector están uniéndose al "movimiento".
+
+  \item En estas sesiones vamos a hacer un repaso de las herramientas open source y libres más relevantes para el desarrollo y
+     verificación de proyectos escritos en VHDL $>=$2008.
+  \item Vamos a centrarnos en la simulación, aunque haremos mención a la síntesis también.
+}
+
+\begin{frame}
 \frametitle{19XX - 20XX}
 \centering
 \Huge
@@ -234,46 +274,6 @@ Software {\color{green}\bfseries?=} Hardware
   \item Si el coste de fabricar un ASIC se reduce a cero, tampoco hay razón para considerar el desarrollo
     significativamente diferente.
 \end{itemize}
-}
-
-\begin{frame}
-\frametitle{EDA tooling ecosystem(s)}
-\begin{center}
-\includegraphics[width=.9\linewidth]{synthesis}
-
-\vfill
-
-hdl/awesome\#98 \href{https://github.com/hdl/awesome/issues/98}{{\faGithub}}
-\end{center}
-
-\vfill
-
-{\tiny
-Note:
-Synthesis flows targeting FPGA bitstreams are shown only.
-Simulation/verification and ASIC targets are not included in this diagram.
-
-See also:
-Rodrigo A. Melo.
-\emph{Free and Open Source Software for FPGA development}.
-February 2021.
-\href{http://indico.ictp.it/event/9443/session/258/contribution/587/material/slides/}{\faSlideshare}
-\href{http://indico.ictp.it/event/9443/session/258/contribution/587/material/video/}{\faVideoCamera}
-}
-
-\vfill
-
-\end{frame}
-
-\note[itemize]{
-\item  En la última década han surgido y madurado toda una serie de proyectos para traer prácticas y herramientas utilizadas
-   en el desarrollo de software y aplicarlas al desarrollo de hardware.
-\item  Por razones geopolíticas y económicas, la mayoría de las mismas son open source (no necesariamente software libre).
-\item  Con cierto delay (casi una década), las empresas relevantes del sector están uniéndose al "movimiento".
-
-\item En estas sesiones vamos a hacer un repaso de las herramientas open source y libres más relevantes para el desarrollo y
-   verificación de proyectos escritos en VHDL $>=$2008.
-\item Vamos a centrarnos en la simulación, aunque haremos mención a la síntesis también.
 }
 
 \begin{frame}
