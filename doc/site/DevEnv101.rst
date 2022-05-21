@@ -30,3 +30,8 @@ Git
 * :gh:`Git-it <jlord/git-it-electron>`
 
 * `ohshitgit.com <https://ohshitgit.com>`__
+
+Python
+======
+
+* :gh:`satwikkansal/wtfpython`
