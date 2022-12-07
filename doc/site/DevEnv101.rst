@@ -31,6 +31,8 @@ Git
 
 * `ohshitgit.com <https://ohshitgit.com>`__
 
+* :gh:`Flight rules for Git <k88hudson/git-flight-rules>`
+
 Python
 ======
 
