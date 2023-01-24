@@ -171,11 +171,11 @@ intersphinx_mapping = {
 # -- Sphinx.Ext.ExtLinks -----------------------------------------------------------------------------------------------
 
 extlinks = {
-    "wikipedia": ("https://en.wikipedia.org/wiki/%s", "wikipedia:"),
-    "awesome":   ("https://hdl.github.io/awesome/items/%s", ""),
-    "gh":        ("https://github.com/%s", "gh:"),
-    "ghsharp":   ("https://github.com/umarcor/SIEAV/issues/%s", "#"),
-    "ghissue":   ("https://github.com/umarcor/SIEAV/issues/%s", "issue #"),
-    "ghpull":    ("https://github.com/umarcor/SIEAV/pull/%s", "pull request #"),
-    "ghsrc":     ("https://github.com/umarcor/SIEAV/blob/main/%s", ""),
+    "wikipedia": ("https://en.wikipedia.org/wiki/%s", "wikipedia:%s"),
+    "awesome":   ("https://hdl.github.io/awesome/items/%s", "%s"),
+    "gh":        ("https://github.com/%s", "gh:%s"),
+    "ghsharp":   ("https://github.com/umarcor/SIEAV/issues/%s", "#%s"),
+    "ghissue":   ("https://github.com/umarcor/SIEAV/issues/%s", "issue #%s"),
+    "ghpull":    ("https://github.com/umarcor/SIEAV/pull/%s", "pull request #%s"),
+    "ghsrc":     ("https://github.com/umarcor/SIEAV/blob/main/%s", "%s"),
 }
