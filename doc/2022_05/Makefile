@@ -31,4 +31,4 @@ container:
 	    clean
 
 clean:
-	rm -f *.aux *.log *.nav *.out *.snm *.synctex* *.toc
+	rm -f *.aux *.log *.nav *.out *.snm *.synctex* *.toc *.vrb
