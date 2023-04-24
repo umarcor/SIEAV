@@ -19,12 +19,15 @@ build-other:
 	mv 2022_05_other.pdf ../pdf/
 
 container:
-	docker run --rm -v /$(PWD)://wrk -w //wrk/doc/2022_05 btdi/latex make \
-	build-main clean \
-	build-sim clean \
-	build-cosim clean \
-	build-other clean \
-	build-control clean
+	docker run --rm \
+	  -v /$(PWD)://wrk -w //wrk/doc/2022_05 \
+	  --security-opt label=disable \
+	  btdi/latex make \
+	    build-main clean \
+	    build-sim clean \
+	    build-cosim clean \
+	    build-other clean \
+	    build-control clean
 
 clean:
 	rm -f *.aux *.log *.nav *.out *.snm *.synctex* *.toc
