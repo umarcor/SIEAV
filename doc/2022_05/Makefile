@@ -23,11 +23,12 @@ container:
 	  -v /$(PWD)://wrk -w //wrk/doc/2022_05 \
 	  --security-opt label=disable \
 	  btdi/latex make \
-	    build-main clean \
-	    build-sim clean \
-	    build-cosim clean \
-	    build-other clean \
-	    build-control clean
+	    build-main \
+	    build-sim \
+	    build-cosim \
+	    build-other \
+	    build-control \
+	    clean
 
 clean:
 	rm -f *.aux *.log *.nav *.out *.snm *.synctex* *.toc
