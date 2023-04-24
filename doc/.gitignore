@@ -49,3 +49,6 @@
 *.plf
 *.plt
 *.ptc
+
+#beamer
+*.vrb
