@@ -8,6 +8,7 @@ from vunit import VUnit
 ROOT = Path(__file__).resolve().parent
 
 VU = VUnit.from_argv()
+VU.add_vhdl_builtins()
 VU.add_verification_components()
 
 LIB = VU.add_library("lib")

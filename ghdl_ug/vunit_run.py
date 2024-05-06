@@ -7,6 +7,7 @@ ROOT = Path(__file__).resolve().parent
 
 # Create VUnit instance by parsing command line arguments
 vu = VUnit.from_argv()
+vu.add_vhdl_builtins()
 
 # Create library 'lib'
 lib = vu.add_library("lib")
