@@ -10,7 +10,9 @@ at the `University of the Basque Country (UPV/EHU) <https://www.ehu.eus>`__.
 Find the syllabus:
 `2019/2020 <https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20190&p_anyo_pop=20170&p_cod_centro=345&p_cod_materia=9117&p_cod_asignatura=504738&p_tipo_asignatura=1>`__,
 `2020/2021 <https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20200&p_anyo_pop=20170&p_cod_centro=345&p_cod_materia=9117&p_cod_asignatura=504738&p_tipo_asignatura=1>`__,
-`2021/2022 <https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20210&p_anyo_pop=20170&p_cod_centro=345&p_cod_materia=9117&p_cod_asignatura=504738&p_tipo_asignatura=1>`__.
+`2021/2022 <https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20210&p_anyo_pop=20170&p_cod_centro=345&p_cod_materia=9117&p_cod_asignatura=504738&p_tipo_asignatura=1>`__,
+`2022/2023 <https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20220&p_anyo_pop=20170&p_cod_centro=345&p_cod_materia=9117&p_cod_asignatura=504738&p_tipo_asignatura=1>`__,
+`2023/2024 <https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20230&p_anyo_pop=20170&p_cod_centro=345&p_cod_materia=9117&p_cod_asignatura=504738&p_tipo_asignatura=1>`__.
 
 .. |Logo:EHU| image:: _static/ehu.png
    :alt: UPV/EHU
