@@ -26,11 +26,11 @@ pacman -Syu --noconfirm
 
 # Install the dependencies for simulation and synthesis of VHDL is FLOSS tools
 pacman -S --noconfirm p7zip git \
-    mingw-w64-"${MSYSTEM_CARCH}"-yosys \
-    mingw-w64-"${MSYSTEM_CARCH}"-gtkwave \
-    mingw-w64-"${MSYSTEM_CARCH}"-python-pip \
-    mingw-w64-"${MSYSTEM_CARCH}"-python-setuptools \
-    mingw-w64-"${MSYSTEM_CARCH}"-python-wheel
+    mingw-w64-x86_64-yosys \
+    mingw-w64-x86_64-gtkwave \
+    mingw-w64-x86_64-python-pip \
+    mingw-w64-x86_64-python-setuptools \
+    mingw-w64-x86_64-python-wheel
 
 if [ -d vunit ]; then
   printf "\033[31mSubdir 'vunit' exists already.\033[0m\n"

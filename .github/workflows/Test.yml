@@ -36,24 +36,16 @@ jobs:
 
   MSYS2:
     runs-on: windows-latest
-    strategy:
-      fail-fast: false
-      max-parallel: 2
-      matrix:
-        include: [
-          {icon: '⬛', sys: 'MINGW32', arch: i686,   pkg: 'mcode' },
-          {icon: '🟦', sys: 'MINGW64', arch: x86_64, pkg: 'llvm'  },
-        ]
-    name: '${{ matrix.icon }} ${{ matrix.sys }} · ${{ matrix.pkg }}'
+    name: '🟦 MINGW64 · LLVM'
     defaults:
       run:
         shell: msys2 {0}
     steps:
 
-    - name: '${{ matrix.icon }} Setup MSYS2'
+    - name: '🟦 Setup MSYS2'
       uses: msys2/setup-msys2@v2
       with:
-        msystem: ${{ matrix.sys }}
+        msystem: MINGW64
         update: true
 
     - name: '⚙️ git config'
