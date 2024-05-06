@@ -53,7 +53,7 @@ jobs:
       shell: bash
 
     - name: 🧰 Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: 🛠️ Setup EDA tools
       run: ./doc/setup.msys2.sh
@@ -78,7 +78,7 @@ jobs:
     steps:
 
     - name: 🧰 Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         submodules: recursive
 
