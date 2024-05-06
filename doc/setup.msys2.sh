@@ -30,7 +30,8 @@ pacman -S --noconfirm p7zip git \
     mingw-w64-x86_64-gtkwave \
     mingw-w64-x86_64-python-pip \
     mingw-w64-x86_64-python-setuptools \
-    mingw-w64-x86_64-python-wheel
+    mingw-w64-x86_64-python-wheel \
+    mingw-w64-x86_64-python-colorama
 
 if [ -d vunit ]; then
   printf "\033[31mSubdir 'vunit' exists already.\033[0m\n"
