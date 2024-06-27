@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Co-simulation and behavioural verification with VHDL, C/C++ and Python/m &mdash; SIEAV CVS latest documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/documentation_options.js?v=c6e86fd7"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="VHDL, a programming language" href="VHDL.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> SIEAV CVS
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference external" href="http://umarcor.github.io/SIEAV">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VHDL.html">VHDL, a programming language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Co-design.html">Hardware-software co-design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation of FLOSS EDA tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VUnit.html">Introduction to VUnit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Control.html">Control system modelling in VHDL 2008</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Exercise.html">Assignment/exercise</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Slides.html">Slides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DevEnv101.html">Development Environment 101</a></li>
+<li class="toctree-l1"><a class="reference internal" href="License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="References.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">SIEAV CVS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+        
+          
+            <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>Co-simulation and behavioural verification with VHDL, C/C++ and Python/m</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/umarcor/SIEAV/blob/main/site/index.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="co-simulation-and-behavioural-verification-with-vhdl-c-c-and-python-m">
+<h1>Co-simulation and behavioural verification with VHDL, C/C++ and Python/m<a class="headerlink" href="#co-simulation-and-behavioural-verification-with-vhdl-c-c-and-python-m" title="Link to this heading">¶</a></h1>
+<a class="reference external image-reference" href="https://github.com/umarcor/SIEAV"><img alt="_images/banner.png" class="align-center" src="_images/banner.png" style="width: 500px;" /></a>
+<section id="about">
+<span id="intro"></span><h2>About<a class="headerlink" href="#about" title="Link to this heading">¶</a></h2>
+<p>This repository and documentation contain resources used in some sessions of the “<em>Cosimulation for verification of
+systems on FPGAs</em>” (in spanish, “<em>Cosimulación para la verificación de sistemas sobre FPGAs</em>”) course unit taught in the
+<a class="reference external" href="https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados">Master on Advanced Electronic Systems (in spanish, Máster en Sistemas Electrónicos Avanzados)</a>
+at the <a class="reference external" href="https://www.ehu.eus">University of the Basque Country (UPV/EHU)</a>.
+Find the syllabus:
+<a class="reference external" href="https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20190&amp;p_anyo_pop=20170&amp;p_cod_centro=345&amp;p_cod_materia=9117&amp;p_cod_asignatura=504738&amp;p_tipo_asignatura=1">2019/2020</a>,
+<a class="reference external" href="https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20200&amp;p_anyo_pop=20170&amp;p_cod_centro=345&amp;p_cod_materia=9117&amp;p_cod_asignatura=504738&amp;p_tipo_asignatura=1">2020/2021</a>,
+<a class="reference external" href="https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20210&amp;p_anyo_pop=20170&amp;p_cod_centro=345&amp;p_cod_materia=9117&amp;p_cod_asignatura=504738&amp;p_tipo_asignatura=1">2021/2022</a>.</p>
+<p class="centered">
+<strong><a class="reference external" href="https://www.ehu.eus"><img alt="UPV/EHU" src="_images/ehu.png" style="height: 100px;" /></a>         <a class="reference external" href="https://www.ehu.eus/gded"><img alt="Grupo de Investigación de Diseño en Electrónica Digital (GDED)" src="_images/gded.png" style="height: 100px;" /></a></strong></p><br><div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>These sessions are a follow-up of the course unit “<em>Design of digital controllers with FPGAs</em>” (in spanish, “<em>Diseño
+de controladores digitales con FPGAs</em>”) taught in the same master degree (<a class="reference external" href="https://www.ehu.eus/es/web/master/master-sistemas-electronicos-avanzados/materia?p_anyo_ofd=20210&amp;p_anyo_pop=20170&amp;p_cod_centro=345&amp;p_cod_materia=9120&amp;p_cod_asignatura=504740&amp;p_tipo_asignatura=1">2021/2022</a>).
+Hence, attendants are expected to have prior knowledge about the fundamentals of control theory (discretization of
+state-space representation and transfer-functions, sampling and PID algorithms/implementations).
+Nonetheless, these sessions are focused on VHDL language features, not on control.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The course is taught in spanish and/or basque (for now); so, some references might not be available in english (yet).
+Still, most of the documentation and code examples should be readable to any english speaker.
+Should you find any issue in this regard, please <a class="reference external" href="https://github.com/umarcor/SIEAV/issues/new">let us know</a>!</p>
+</div>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<p>This part of the course is focused on using Free/Libre and Open Source Software (<a class="reference external" href="https://www.gnu.org/philosophy/floss-and-foss.en.html">FLOSS</a>)
+tools for hardware-software co-design with
+<a class="reference external" href="https://ieee-p1076.gitlab.io/index.html" title="(in VHDL Analysis and Standardization Group (VASG))"><span class="xref std std-doc">VHDL</span></a>,
+C/C++,
+and
+<a class="reference external" href="https://www.python.org/">Python</a>,
+<a class="reference external" href="https://www.mathworks.com/products/matlab.html">Matlab</a>,
+and/or
+<a class="reference external" href="https://www.gnu.org/software/octave/index">Octave</a>.
+A methodology based on co-simulation interfaces, mixed-language Verification Components (VCs) and digital twins is
+introduced (see
+<a class="reference external" href="https://en.wikipedia.org/wiki/Functional_verification">wikipedia: Functional verification</a>,
+<a class="reference external" href="https://en.wikipedia.org/wiki/Digital_twin">wikipedia: Digital twin</a>
+and <a class="reference external" href="https://en.wikipedia.org/wiki/Co-simulation">wikipedia:Co-simulation</a>,
+respectively).</p>
+<p>For now, synthesis and automatic documentation generation are not included in this course.
+However, references to FLOSS projects (such as
+<a class="reference external" href="https://umarcor.github.io/osvb/index.html" title="(in Open Source Verification Bundle vlatest)"><span class="xref std std-doc">OSVB</span></a>,
+<a class="reference external" href="https://edaa-org.github.io/index.html" title="(in Electronic Design Automation Abstraction vlatest)"><span class="xref std std-doc">EDA²</span></a>,
+<a class="reference external" href="https://f4pga.org/">F4PGA</a> (formerly known as <a class="reference external" href="https://github.com/SymbiFlow">SymbiFlow</a>),
+<a class="reference external" href="https://renode.io/">Renode</a>,
+etc.
+) are provided throughout the documentation.</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="VHDL.html" class="btn btn-neutral float-right" title="VHDL, a programming language" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, Unai Martinez-Corral.</p>
+  </div>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/buildthedocs/sphinx.theme">theme</a>
+    provided by <a href="https://buildthedocs.github.io">Build the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
