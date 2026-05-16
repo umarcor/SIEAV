@@ -15,6 +15,10 @@
 --
 -- SPDX-License-Identifier: Apache-2.0
 
+library ieee;
+context ieee.ieee_std_context;
+use ieee.math_real.sqrt;
+
 library vunit_lib;
 context vunit_lib.vunit_context;
 
@@ -25,9 +29,50 @@ end entity;
 architecture tb of tb_rotation is
 begin
   main : process
+
+    type titem_t is array(0 to 3) of real;
+    type tarray_t is array (natural range <>) of titem_t;
+    constant test_data : tarray_t := (
+      (  1.0 ,                    0.0 ,                 0.7071067811865476 ,  0.7071067811865476 ), -- 0
+      (  0.8660254037844387 ,     0.5 ,                 0.2588190451025209 ,  0.9659258262890683 ), -- 30
+      (  0.5 ,                    0.8660254037844386 , -0.2588190451025207 ,  0.9659258262890684 ), -- 60
+      (  0.0 ,                    1.0 ,                -0.7071067811865475 ,  0.7071067811865476 ), -- 90
+      ( -0.5 ,                    0.8660254037844387 , -0.9659258262890682 ,  0.2588190451025210 ), --120
+      ( -0.8660254037844385 ,     0.5 ,                -0.9659258262890684 , -0.2588190451025204 ), -- 150
+      ( -1.0 ,                    0.0 ,                -0.7071067811865477 , -0.7071067811865475 ), -- 180
+      ( -0.8660254037844388 ,    -0.5 ,                -0.2588190451025211 , -0.9659258262890683 ), -- 210
+      ( -0.5 ,                   -0.8660254037844384 ,  0.2588190451025203 , -0.9659258262890684 ), -- 240
+      (  0.0 ,                   -1.0 ,                 0.7071067811865475 , -0.7071067811865477 ), -- 270
+      (  0.5 ,                   -0.866025403784439 ,   0.9659258262890682 , -0.2588190451025215 ), -- 300
+      (  0.8660254037844384 ,    -0.5 ,                 0.9659258262890684 ,  0.2588190451025203 )  -- 330
+    );
+
+    variable x, y, xe, ye, xr, yr : real;
+    constant max_diff : real := 1.0e-15;
+
   begin
+
     test_runner_setup(runner, runner_cfg);
     report "Rotation testbench!";
+
+    for i in test_data'range loop
+      x  := test_data(i)(0);
+      y  := test_data(i)(1);
+      xe := test_data(i)(2);
+      ye := test_data(i)(3);
+-- Python
+--    (x - y) * m_sqrt(2)/2,
+--    (x + y) * m_sqrt(2)/2
+      xr := (x-y) * sqrt(2.0)/2.0;
+      yr := (x+y) * sqrt(2.0)/2.0;
+
+      check_equal(xr, xe, max_diff => max_diff);
+      check_equal(yr, ye, max_diff => max_diff);
+
+    end loop;
+
     test_runner_cleanup(runner);
+
   end process;
+
 end architecture;
