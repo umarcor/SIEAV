@@ -44,27 +44,34 @@ architecture arch of rotation is
 begin
 
   -- pragma synthesis_off
-  process(clk)
-
-    type model_t is array(0 to 1) of real;
-    variable model_coords : model_t;
-
-    function model ( x,y : real ) return model_t is
-      constant const : real := sqrt(2.0)/2.0;
-    begin
-        return ( (x-y)*const , (x+y)*const );
-    end function;
-
-    constant max_diff : real := 1.0e-15;
-
+  sim: block is
+    signal xp,yp : real := 0.0;
   begin
-    if rising_edge(clk) and rst = '0' then
-      info(logger, "UUT " & to_string(xi) &":"& to_string(yi) );
-      model_coords := model(xi,yi);
-      check_equal(xr, model_coords(0), "X!", max_diff => max_diff);
-      check_equal(yr, model_coords(1), "Y!", max_diff => max_diff);
-    end if;
-  end process;
+    process(clk)
+
+      type model_t is array(0 to 1) of real;
+      variable model_coords : model_t;
+
+      function model ( x,y : real ) return model_t is
+        constant const : real := sqrt(2.0)/2.0;
+      begin
+        return ( (x-y)*const , (x+y)*const );
+      end function;
+
+      constant max_diff : real := 1.0e-15;
+
+    begin
+      if rising_edge(clk) and rst='0' then
+        xp <= xi;
+        yp <= yi;
+        info(logger, "UUT " & to_string(xp) &":"& to_string(yp) &" | "& to_string(xr) &":"& to_string(yr) );
+        model_coords := model(xp,yp);
+        info(logger, "MODEL " & to_string(model_coords(0)) &":"& to_string(model_coords(1)));
+        check_equal(xr, model_coords(0), "X!", max_diff => max_diff);
+        check_equal(yr, model_coords(1), "Y!", max_diff => max_diff);
+      end if;
+    end process;
+  end block;
   -- pragma synthesis_on
 
   process(clk)
