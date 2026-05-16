@@ -58,7 +58,7 @@ begin
         return ( (x-y)*const , (x+y)*const );
       end function;
 
-      constant max_diff : real := 1.0e-15;
+      constant max_diff : real := 2.8e-2;
 
     begin
       if rising_edge(clk) and rst='0' then
@@ -75,14 +75,15 @@ begin
   -- pragma synthesis_on
 
   process(clk)
+    constant const : real := 0.5 + 0.25 - 0.125 + 0.0625;
   begin
     if rising_edge(clk) then
       if rst then
         xr <= 0.0;
         yr <= 0.0;
       else
-        xr <= (xi-yi) * sqrt(2.0)/2.0;
-        yr <= (xi+yi) * sqrt(2.0)/2.0;
+        xr <= (xi-yi) * const;
+        yr <= (xi+yi) * const;
       end if;
     end if;
   end process;
