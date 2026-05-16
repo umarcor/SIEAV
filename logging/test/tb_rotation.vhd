@@ -27,7 +27,33 @@ entity tb_rotation is
 end entity;
 
 architecture tb of tb_rotation is
+
+  constant clk_period : time := 10 ns;
+
+  signal clk, rst : std_logic := '0';
+
+  signal x, y, xr, yr : real := 0.0;
+
 begin
+
+  clk <= not clk after clk_period/2;
+
+  process
+  begin
+    rst <= '1', '0' after clk_period*10;
+    wait;
+  end process;
+
+  UUT: entity work.rotation
+  port map (
+    clk => clk,
+    rst => rst,
+    xi  => x,
+    yi  => y,
+    xr  => xr,
+    yr  => yr
+  );
+
   main : process
 
     type titem_t is array(0 to 3) of real;
@@ -47,7 +73,7 @@ begin
       (  0.8660254037844384 ,    -0.5 ,                 0.9659258262890684 ,  0.2588190451025203 )  -- 330
     );
 
-    variable x, y, xe, ye, xr, yr : real;
+    variable xe, ye : real;
     constant max_diff : real := 1.0e-15;
 
   begin
@@ -55,16 +81,15 @@ begin
     test_runner_setup(runner, runner_cfg);
     report "Rotation testbench!";
 
+    wait until rising_edge(clk) and rst='0';
+
     for i in test_data'range loop
-      x  := test_data(i)(0);
-      y  := test_data(i)(1);
+      x  <= test_data(i)(0);
+      y  <= test_data(i)(1);
       xe := test_data(i)(2);
       ye := test_data(i)(3);
--- Python
---    (x - y) * m_sqrt(2)/2,
---    (x + y) * m_sqrt(2)/2
-      xr := (x-y) * sqrt(2.0)/2.0;
-      yr := (x+y) * sqrt(2.0)/2.0;
+
+      wait until rising_edge(clk);
 
       check_equal(xr, xe, max_diff => max_diff);
       check_equal(yr, ye, max_diff => max_diff);

@@ -26,6 +26,7 @@ vu = VUnit.from_argv()
 vu.add_vhdl_builtins()
 
 vu.add_library("lib").add_source_files([
+  ROOT / "rtl/*.vhd",
   ROOT / "test/*.vhd"
 ])
 
