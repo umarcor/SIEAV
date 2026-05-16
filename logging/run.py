@@ -24,6 +24,7 @@ ROOT = Path(__file__).parent
 
 vu = VUnit.from_argv()
 vu.add_vhdl_builtins()
+vu.enable_location_preprocessing()
 
 vu.add_library("lib").add_source_files([
   ROOT / "rtl/*.vhd",
