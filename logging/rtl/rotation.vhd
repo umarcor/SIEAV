@@ -76,16 +76,19 @@ begin
 
   process(clk)
     constant precision : natural := 14;
-    variable xmy, xpy : signed(precision+1 downto 0) := (others=>'0');
     constant scale : real := (2.0**precision)-1.0;
+    variable xs, ys : signed(precision downto 0) := (others=>'0');
+    variable xmy, xpy : signed(precision+1 downto 0) := (others=>'0');
   begin
     if rising_edge(clk) then
       if rst then
         xr <= 0.0;
         yr <= 0.0;
       else
-        xmy := to_signed(integer( (xi-yi) * scale ), xmy'length);
-        xpy := to_signed(integer( (xi+yi) * scale ), xpy'length);
+        xs := to_signed(integer( xi * scale ), xs'length);
+        ys := to_signed(integer( yi * scale ), ys'length);
+        xmy := resize(xs, xmy'length) - ys;
+        xpy := resize(xs, xpy'length) + ys;
         -- K = .5 + .25 - .125 + .0625                     = .6875   (2.77%) 4 shifts 3 adders
         -- K = .5 + .25                - .03125            = .71875  (1.65%) 5 shifts 2 adders
         -- K = .5 + .25                - .03125 - 0.015625 = .703125 (0.56%) 6 shifts 3 adders
