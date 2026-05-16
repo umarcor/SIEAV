@@ -56,6 +56,9 @@ begin
   end process;
 
   UUT: entity work.rotation
+  generic map (
+    logger => logger
+  )
   port map (
     clk => clk,
     rst => rst,

@@ -25,6 +25,11 @@ context vunit_lib.vunit_context;
 -- pragma synthesis_on
 
 entity rotation is
+  -- pragma synthesis_off
+  generic (
+    logger : logger_t := null_logger
+  );
+  -- pragma synthesis_on
   port (
     clk : in  std_logic;
     rst : in  std_logic;
@@ -42,7 +47,7 @@ begin
   process(clk)
   begin
     if rising_edge(clk) and rst = '0' then
-      info( to_string(xi) &","& to_string(yi) );
+      info(logger, to_string(xi) &":"& to_string(yi) );
     end if;
   end process;
   -- pragma synthesis_on
