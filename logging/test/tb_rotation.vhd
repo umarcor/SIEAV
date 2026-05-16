@@ -64,8 +64,8 @@ begin
     rst => rst,
     xi  => x,
     yi  => y,
-    xr  => xr,
-    yr  => yr
+    xo  => xr,
+    yo  => yr
   );
 
   main : process

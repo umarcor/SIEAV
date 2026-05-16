@@ -25,22 +25,26 @@ context vunit_lib.vunit_context;
 -- pragma synthesis_on
 
 entity rotation is
-  -- pragma synthesis_off
   generic (
-    logger : logger_t := null_logger
+    -- pragma synthesis_off
+    logger : logger_t := null_logger;
+    -- pragma synthesis_on
+    precision : natural := 15
   );
-  -- pragma synthesis_on
   port (
     clk : in  std_logic;
     rst : in  std_logic;
     xi  : in  real;
     yi  : in  real;
-    xr  : out real;
-    yr  : out real
+    xo  : out real;
+    yo  : out real
   );
 end entity;
 
 architecture arch of rotation is
+
+  signal xs, ys, xr, yr : signed(precision downto 0) := (others=>'0');
+
 begin
 
   -- pragma synthesis_off
@@ -67,33 +71,37 @@ begin
         info(logger, "UUT " & to_string(xp) &":"& to_string(yp) &" | "& to_string(xr) &":"& to_string(yr) );
         model_coords := model(xp,yp);
         info(logger, "MODEL " & to_string(model_coords(0)) &":"& to_string(model_coords(1)));
-        check_equal(xr, model_coords(0), "X!", max_diff => max_diff);
-        check_equal(yr, model_coords(1), "Y!", max_diff => max_diff);
+        check_equal(xo, model_coords(0), "X!", max_diff => max_diff);
+        check_equal(yo, model_coords(1), "Y!", max_diff => max_diff);
       end if;
     end process;
   end block;
   -- pragma synthesis_on
 
-  process(clk)
-    constant precision : natural := 14;
+  types: block is
     constant scale : real := (2.0**precision)-1.0;
-    variable xs, ys : signed(precision downto 0) := (others=>'0');
+  begin
+    xs <= to_signed(integer( xi * scale ), xs'length);
+    ys <= to_signed(integer( yi * scale ), ys'length);
+    xo <= real(to_integer(xr))/scale;
+    yo <= real(to_integer(yr))/scale;
+  end block;
+
+  process(clk)
     variable xmy, xpy : signed(precision+1 downto 0) := (others=>'0');
   begin
     if rising_edge(clk) then
       if rst then
-        xr <= 0.0;
-        yr <= 0.0;
+        xr <= (others=>'0');
+        yr <= (others=>'0');
       else
-        xs := to_signed(integer( xi * scale ), xs'length);
-        ys := to_signed(integer( yi * scale ), ys'length);
         xmy := resize(xs, xmy'length) - ys;
         xpy := resize(xs, xpy'length) + ys;
         -- K = .5 + .25 - .125 + .0625                     = .6875   (2.77%) 4 shifts 3 adders
         -- K = .5 + .25                - .03125            = .71875  (1.65%) 5 shifts 2 adders
         -- K = .5 + .25                - .03125 - 0.015625 = .703125 (0.56%) 6 shifts 3 adders
-        xr <= real(to_integer( (shift_right(xmy, 1) + shift_right(xmy, 2)) - (shift_right(xmy, 5) + shift_right(xmy, 6)) ))/scale;
-        yr <= real(to_integer( (shift_right(xpy, 1) + shift_right(xpy, 2)) - (shift_right(xpy, 5) + shift_right(xpy, 6)) ))/scale;
+        xr <= resize( (shift_right(xmy, 1) + shift_right(xmy, 2)) - (shift_right(xmy, 5) + shift_right(xmy, 6)) , xr'length);
+        yr <= resize( (shift_right(xpy, 1) + shift_right(xpy, 2)) - (shift_right(xpy, 5) + shift_right(xpy, 6)) , yr'length);
       end if;
     end if;
   end process;
