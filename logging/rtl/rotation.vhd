@@ -19,6 +19,11 @@ library ieee;
 context ieee.ieee_std_context;
 use ieee.math_real.sqrt;
 
+-- pragma synthesis_off
+library vunit_lib;
+context vunit_lib.vunit_context;
+-- pragma synthesis_on
+
 entity rotation is
   port (
     clk : in  std_logic;
@@ -32,6 +37,15 @@ end entity;
 
 architecture arch of rotation is
 begin
+
+  -- pragma synthesis_off
+  process(clk)
+  begin
+    if rising_edge(clk) and rst = '0' then
+      info( to_string(xi) &","& to_string(yi) );
+    end if;
+  end process;
+  -- pragma synthesis_on
 
   process(clk)
   begin
