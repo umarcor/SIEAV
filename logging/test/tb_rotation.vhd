@@ -34,12 +34,23 @@ architecture tb of tb_rotation is
 
   signal x, y, xr, yr : real := 0.0;
 
+  -- Logging
+  constant logger : logger_t := get_logger("logger");
+  constant file_handler : log_handler_t := new_log_handler(
+    output_path(runner_cfg) & "logger.csv",
+    format => csv
+    --use_color => false
+  );
+
 begin
 
   clk <= not clk after clk_period/2;
 
   process
   begin
+    set_log_handlers(logger, (display_handler, file_handler));
+    show_all(logger, file_handler);
+    show_all(logger, display_handler);
     rst <= '1', '0' after clk_period*10;
     wait;
   end process;
@@ -80,15 +91,18 @@ begin
 
     test_runner_setup(runner, runner_cfg);
     set_stop_level(failure);
-    report "Rotation testbench!";
+    info("Rotation testbench!");
 
     wait until rising_edge(clk) and rst='0';
+    info(logger, "RST went down!");
 
     for i in test_data'range loop
       x  <= test_data(i)(0);
       y  <= test_data(i)(1);
       xe := test_data(i)(2);
       ye := test_data(i)(3);
+
+      info(logger, "TEST [" & to_string(i) &"] "& to_string(x) &":"& to_string(y) &" | "& to_string(xe) &":"& to_string(ye) );
 
       wait until rising_edge(clk);
 
