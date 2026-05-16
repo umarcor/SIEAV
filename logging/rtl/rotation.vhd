@@ -58,7 +58,7 @@ begin
         return ( (x-y)*const , (x+y)*const );
       end function;
 
-      constant max_diff : real := 2.8e-2;
+      constant max_diff : real := 5.65e-3;
 
     begin
       if rising_edge(clk) and rst='0' then
@@ -75,15 +75,22 @@ begin
   -- pragma synthesis_on
 
   process(clk)
-    constant const : real := 0.5 + 0.25 - 0.125 + 0.0625;
+    constant precision : natural := 14;
+    variable xmy, xpy : signed(precision+1 downto 0) := (others=>'0');
+    constant scale : real := (2.0**precision)-1.0;
   begin
     if rising_edge(clk) then
       if rst then
         xr <= 0.0;
         yr <= 0.0;
       else
-        xr <= (xi-yi) * const;
-        yr <= (xi+yi) * const;
+        xmy := to_signed(integer( (xi-yi) * scale ), xmy'length);
+        xpy := to_signed(integer( (xi+yi) * scale ), xpy'length);
+        -- K = .5 + .25 - .125 + .0625                     = .6875   (2.77%) 4 shifts 3 adders
+        -- K = .5 + .25                - .03125            = .71875  (1.65%) 5 shifts 2 adders
+        -- K = .5 + .25                - .03125 - 0.015625 = .703125 (0.56%) 6 shifts 3 adders
+        xr <= real(to_integer( (shift_right(xmy, 1) + shift_right(xmy, 2)) - (shift_right(xmy, 5) + shift_right(xmy, 6)) ))/scale;
+        yr <= real(to_integer( (shift_right(xpy, 1) + shift_right(xpy, 2)) - (shift_right(xpy, 5) + shift_right(xpy, 6)) ))/scale;
       end if;
     end if;
   end process;
