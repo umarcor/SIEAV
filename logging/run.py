@@ -18,6 +18,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from pathlib import Path
+from textwrap import dedent
 from vunit import VUnit
 
 ROOT = Path(__file__).parent
@@ -31,4 +32,16 @@ vu.add_library("lib").add_source_files([
   ROOT / "test/*.vhd"
 ])
 
-vu.main()
+def post_func(results):
+  report = results.get_report()
+  print("\nTest output path:", report.output_path / 'test_output')
+  for key, test in report.tests.items():
+    print(dedent(f"""
+    Test <{key}> {test.status} in {test.time} sec.
+    relpath: {test.relpath}\
+    """))
+    logger_csv = test.path / 'logger.csv'
+    if not logger_csv.exists() :
+      raise Exception ("logger CSV file not found!")
+
+vu.main(post_run=post_func)
