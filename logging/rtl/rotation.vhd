@@ -48,34 +48,29 @@ architecture arch of rotation is
 begin
 
   -- pragma synthesis_off
-  sim: block is
-    signal xp,yp : real := 0.0;
-  begin
-    process(CLK)
+  process(CLK)
+    type model_t is array(0 to 1) of real;
+    variable expected : model_t := ( 0.0, 0.0 );
 
-      type model_t is array(0 to 1) of real;
-      variable model_coords : model_t;
-
-      function model ( x,y : real ) return model_t is
-        constant const : real := sqrt(2.0)/2.0;
-      begin
-        return ( (x-y)*const , (x+y)*const );
-      end function;
-
-      constant max_diff : real := 5.65e-3;
-
+    function model ( x,y : real ) return model_t is
+      constant const : real := sqrt(2.0)/2.0;
     begin
-      if rising_edge(CLK) and RST='0' then
-        xp <= XI;
-        yp <= YI;
-        info(g_logger, "UUT " & to_string(xp) &":"& to_string(yp) &" | "& to_string(xr) &":"& to_string(yr) );
-        model_coords := model(xp,yp);
-        info(g_logger, "MODEL " & to_string(model_coords(0)) &":"& to_string(model_coords(1)));
-        check_equal(XO, model_coords(0), "X!", max_diff => max_diff);
-        check_equal(YO, model_coords(1), "Y!", max_diff => max_diff);
-      end if;
-    end process;
-  end block;
+      return ( (x-y)*const , (x+y)*const );
+    end function;
+
+    constant max_diff : real := 5.65e-3;
+
+    variable xe,ye : real := 0.0;
+  begin
+    if rising_edge(CLK) and RST='0' then
+      info(g_logger, "UUT OUT " & to_string(XO) &":"& to_string(YO));
+      info(g_logger, "MODEL " & to_string(expected(0)) &":"& to_string(expected(1)));
+      check_equal(XO, expected(0), "X!", max_diff => max_diff);
+      check_equal(YO, expected(1), "Y!", max_diff => max_diff);
+      info(g_logger, "UUT IN " & to_string(XI) &":"& to_string(YI));
+      expected := model(XI,YI);
+    end if;
+  end process;
   -- pragma synthesis_on
 
   types: block is
