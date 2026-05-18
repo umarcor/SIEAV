@@ -57,15 +57,15 @@ begin
 
   UUT: entity work.rotation
   generic map (
-    logger => logger
+    g_logger => logger
   )
   port map (
-    clk => clk,
-    rst => rst,
-    xi  => x,
-    yi  => y,
-    xo  => xr,
-    yo  => yr
+    CLK => clk,
+    RST => rst,
+    XI  => x,
+    YI  => y,
+    XO  => xr,
+    YO  => yr
   );
 
   main : process
