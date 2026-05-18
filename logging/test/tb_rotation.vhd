@@ -79,6 +79,7 @@ begin
   begin
 
     test_runner_setup(runner, runner_cfg);
+    set_stop_level(failure);
     report "Rotation testbench!";
 
     wait until rising_edge(clk) and rst='0';
