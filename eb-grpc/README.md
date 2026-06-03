@@ -7,7 +7,7 @@ docker build -t dbhi/grpc - < Dockerfile
 docker run --rm -v $(pwd):/wrk -w /wrk dbhi/grpc make all
 cd ..
 
-# Then, build the `manager` and `unit` clients in C and test them along with the server:
+# Then, build the `manager` and `unit` clients in VHDL using foreign C, and test them along with the server:
 docker run --rm -t -v $(pwd):/wrk -w /wrk ghcr.io/hdl/debian/bookworm/sim/osvb sh -c 'make all && ./test.sh'
 ```
 

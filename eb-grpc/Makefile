@@ -3,13 +3,28 @@
 DIST=dbhi-grpc/dist
 
 all: manager unit
-manager: $(DIST)/hdl-manager
-unit: $(DIST)/hdl-unit
+manager: $(DIST)/ghdl-manager
+unit: $(DIST)/ghdl-unit
 
-CLIBS=$(DIST)/libgrpc-go.so $(DIST)/libgrpc-go.h dbhi-grpc.h
+CLIBS=$(DIST)/libgrpc-go.so $(DIST)/libgrpc-go.h test/dbhi-grpc.h
 
-$(DIST)/hdl-manager: manager.c $(CLIBS)
-	gcc -o $@ $< -I$(DIST) -L$(DIST) -lgrpc-go
+define tb_build
+mkdir -p build && \
+cd build && \
+ghdl -a --std=08 ../$< && \
+ghdl --bind --std=08 tb_$(TNAME) && \
+gcc -o ghdl-$(TNAME) ../test/$(TNAME).c -I../$(DIST) -L../$(DIST) -lgrpc-go -Wl,`ghdl --list-link tb_$(TNAME)` && \
+mv ghdl-$(TNAME) ../$(DIST) && \
+cd ..  && \
+rm -rf build
+endef
+# TODO: Find equivalent syntax to use `ghdl -e` instead of `--bind` and `--list-link`.
+# ghdl -e -o ghdl-$(TNAME) -Wl,../$(TNAME).c ???? tb_$(TNAME)
 
-$(DIST)/hdl-unit: unit.c $(CLIBS)
-	gcc -o $@ $< -I$(DIST) -L$(DIST) -lgrpc-go
+$(DIST)/ghdl-manager: test/tb_manager.vhd test/manager.c $(CLIBS)
+	$(eval TNAME = manager)
+	$(tb_build)
+
+$(DIST)/ghdl-unit: test/tb_unit.vhd test/unit.c $(CLIBS)
+	$(eval TNAME = unit)
+	$(tb_build)

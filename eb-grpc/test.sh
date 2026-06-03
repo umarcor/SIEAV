@@ -11,12 +11,12 @@ echo "TEST SERVER: $SERVER_PID"
 
 sleep 1
 
-LD_LIBRARY_PATH="$(pwd)/$DIST" "$DIST"/hdl-manager & MANAGER_PID=$!
+LD_LIBRARY_PATH="$(pwd)/$DIST" "$DIST"/ghdl-manager & MANAGER_PID=$!
 echo "TEST MANAGER: $MANAGER_PID"
 
 sleep 2
 
-LD_LIBRARY_PATH="$(pwd)/$DIST" "$DIST"/hdl-unit & UNIT_PID=$!
+LD_LIBRARY_PATH="$(pwd)/$DIST" "$DIST"/ghdl-unit & UNIT_PID=$!
 echo "TEST UNIT: $UNIT_PID"
 
 sleep 5
