@@ -1,1 +1,8 @@
-__pycache__
+__pycache__/
+vunit_out/
+*.exe
+*.bin
+*.ghw
+*.o
+e~*.lst
+.$*.drawio.bkp
