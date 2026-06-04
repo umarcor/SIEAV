@@ -1,0 +1,3 @@
+[submodule "eb-grpc/dbhi-grpc"]
+	path = eb-grpc/dbhi-grpc
+	url = https://github.com/dbhi/gRPC
