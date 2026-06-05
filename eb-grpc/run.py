@@ -12,7 +12,8 @@ ROOT = Path(__file__).parent
 
 VU.add_library("lib").add_source_files([
   ROOT / "rtl/*.vhd",
-  ROOT / "test/tb_*.vhd"
+  ROOT / "test/tb_*.vhd",
+  ROOT / "test/vc_*.vhd"
 ])
 
 VU.main()
