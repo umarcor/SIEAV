@@ -32,11 +32,7 @@ end wbs2q;
 
 architecture arch of wbs2q is
 
-  -- TODO
-  -- Can we use just one actor instead of wishbone_slave_t, since we are not using the memory?
-  constant unused_mem : memory_t := new_memory;
-  constant wbs : wishbone_slave_t := new_wishbone_slave(unused_mem);
-
+  constant wbs_ack_actor: actor_t := new_actor;
   constant wr_msg : msg_type_t := new_msg_type("wb slave write");
   constant rd_msg : msg_type_t := new_msg_type("wb slave read");
 
@@ -56,7 +52,7 @@ begin
       req_msg := new_msg(rd_msg);
       push_integer(req_msg, adr);
     end if;
-    send(net, wbs.p_ack_actor, req_msg);
+    send(net, wbs_ack_actor, req_msg);
   end process;
 
   acknowledge : process
@@ -93,7 +89,7 @@ begin
   begin
 
     WBS_ACK <= '0';
-    receive(net, wbs.p_ack_actor, req_msg);
+    receive(net, wbs_ack_actor, req_msg);
     msg_type := message_type(req_msg);
     if (msg_type /= wr_msg) and (msg_type /= rd_msg) then
       unexpected_msg_type(msg_type);
