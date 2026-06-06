@@ -11,15 +11,16 @@ echo "TEST SERVER: $SERVER_PID"
 
 sleep 1
 
-LD_LIBRARY_PATH="$(pwd)/$DIST" "$DIST"/ghdl-manager & MANAGER_PID=$!
+./cosim.py -v lib.tb_manager.* & MANAGER_PID=$!
 echo "TEST MANAGER: $MANAGER_PID"
-
-sleep 2
-
-LD_LIBRARY_PATH="$(pwd)/$DIST" "$DIST"/ghdl-unit & UNIT_PID=$!
-echo "TEST UNIT: $UNIT_PID"
 
 sleep 5
 
-while kill -0 $MANAGER_PID >/dev/null 2>&1; do sleep 1; done
-kill $UNIT_PID $SERVER_PID
+./cosim.py -v lib.tb_unit.* & UNIT_PID=$!
+echo "TEST UNIT: $UNIT_PID"
+
+while kill -0 $UNIT_PID >/dev/null 2>&1; do sleep 1; done
+
+sleep 5
+
+kill $SERVER_PID
