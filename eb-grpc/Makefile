@@ -12,14 +12,13 @@ define tb_build
 mkdir -p build && \
 cd build && \
 ghdl -a --std=08 ../$< && \
-ghdl --bind --std=08 tb_$(TNAME) && \
-gcc -o ghdl-$(TNAME) ../test/cosim/$(TNAME).c -I../$(DIST) -L../$(DIST) -lgrpc-go -Wl,`ghdl --list-link tb_$(TNAME)` && \
+ghdl -e --std=08 -o ghdl-$(TNAME) -Wl,../test/cosim/$(TNAME).c -Wl,-I../$(DIST) -Wl,-L../$(DIST) -Wl,-lgrpc-go tb_$(TNAME) && \
 mv ghdl-$(TNAME) ../$(DIST) && \
 cd ..  && \
 rm -rf build
 endef
-# TODO: Find equivalent syntax to use `ghdl -e` instead of `--bind` and `--list-link`.
-# ghdl -e -o ghdl-$(TNAME) -Wl,../$(TNAME).c ???? tb_$(TNAME)
+# TODO: Ask Tristan (create issue in ghdl/ghdl) to support OPTION in `-Wl,<OPTION>` containing commas:
+# -Wl,../test/cosim/$(TNAME).c,-I../$(DIST),-L../$(DIST),-lgrpc-go
 
 $(DIST)/ghdl-manager: test/cosim/tb_manager.vhd test/cosim/manager.c $(CLIBS)
 	$(eval TNAME = manager)
