@@ -21,7 +21,7 @@ architecture arch of tb_queues is
   constant c_dat_width : natural := 16;
   constant c_adr_width : natural := 10;
 
-  signal done : std_logic;
+  signal mdone, udone : std_logic;
 
   constant request  : queue_t := new_queue;
   constant response : queue_t := new_queue;
@@ -39,7 +39,7 @@ begin
     wait for clk_period*10;
     rst <= '0';
     wait for clk_period;
-    wait until done;
+    wait until mdone and udone;
     info("end of simulation");
     test_runner_cleanup(runner);
   end process;
@@ -55,7 +55,7 @@ begin
   port map (
     CLK  => clk,
     RST  => rst,
-    DONE => done
+    DONE => mdone
   );
 
   vc_unit: entity work.vc_unit
@@ -66,7 +66,8 @@ begin
     g_adr_width => c_adr_width
   )
   port map (
-    CLK => clk
+    CLK => clk,
+    DONE => udone
   );
 
 end;

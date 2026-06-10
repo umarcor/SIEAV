@@ -21,8 +21,7 @@ entity manager is
     WBM_STB   : out std_logic;
     WBM_WE    : out std_logic;
     WBM_STALL :  in std_logic;
-    WBM_ACK   :  in std_logic;
-    DONE      : out std_logic
+    WBM_ACK   :  in std_logic
   );
 end manager;
 
@@ -38,31 +37,30 @@ begin
   p_main: process
     variable tmp : std_logic_vector(WBM_D'range);
   begin
-    DONE <= '0';
     wait until RST='0' and rising_edge(clk);
     info("start manager test");
 
-    write_bus(net, bus_handle, x"0", x"2211");
-    write_bus(net, bus_handle, x"2", x"4433");
-    write_bus(net, bus_handle, x"4", x"6655");
-    write_bus(net, bus_handle, x"6", x"8877");
+    write_bus(net, bus_handle, x"10", x"2211");
+    write_bus(net, bus_handle, x"12", x"4433");
+    write_bus(net, bus_handle, x"14", x"6655");
+    write_bus(net, bus_handle, x"16", x"8877");
 
     wait for 100 ns;
 
-    read_bus(net, bus_handle, x"0", tmp);
+    read_bus(net, bus_handle, x"10", tmp);
     check_equal(tmp, std_logic_vector'(x"2211"));
 
-    read_bus(net, bus_handle, x"2", tmp);
+    read_bus(net, bus_handle, x"12", tmp);
     check_equal(tmp, std_logic_vector'(x"4433"));
 
-    read_bus(net, bus_handle, x"4", tmp);
+    read_bus(net, bus_handle, x"14", tmp);
     check_equal(tmp, std_logic_vector'(x"6655"));
 
-    read_bus(net, bus_handle, x"6", tmp);
+    read_bus(net, bus_handle, x"16", tmp);
     check_equal(tmp, std_logic_vector'(x"8877"));
 
-    wait until rising_edge(CLK);
-    DONE <= '1';
+    write_bus(net, bus_handle, x"0", x"0000");
+
     info("manager test finished");
     wait;
   end process;

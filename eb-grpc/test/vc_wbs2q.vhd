@@ -13,6 +13,7 @@ entity wbs2q is
   generic (
     g_request   : queue_t;
     g_response  : queue_t;
+    g_header    : natural := 0;
     g_dat_width : natural := 16;
     g_adr_width : natural := 10
   );
@@ -26,7 +27,8 @@ entity wbs2q is
     WBS_STB   :  in std_logic;
     WBS_WE    :  in std_logic;
     WBS_STALL : out std_logic;
-    WBS_ACK   : out std_logic
+    WBS_ACK   : out std_logic;
+    DONE      : out std_logic
   );
 end wbs2q;
 
@@ -88,21 +90,35 @@ begin
 
   begin
 
+    DONE <= '0';
     WBS_ACK <= '0';
     receive(net, wbs_ack_actor, req_msg);
     msg_type := message_type(req_msg);
     if (msg_type /= wr_msg) and (msg_type /= rd_msg) then
       unexpected_msg_type(msg_type);
     else
-      adr := pop_integer(req_msg)+1;
-      if msg_type = wr_msg then
-        dat := pop_integer(req_msg);
-        adr := -adr;
-        request_through_queue;
-      elsif msg_type = rd_msg then
-        dat := 0;
-        request_through_queue;
-        WBS_Q <= std_logic_vector(to_signed(dat, WBS_Q'length));
+      dat := 0;
+      adr := pop_integer(req_msg);
+      if adr < g_header then
+        case adr is
+          when 0 =>
+          -- Tell grpc2q to finish by passing address 0 through the request channel.
+          request_through_queue;
+          DONE <= '1';
+          when others => error("Unknown wbs2q header address " & to_string(adr));
+        end case;
+      else
+        -- Substract the header offset and add one to encode writes as negatives and reads as positives.
+        adr := adr-g_header + 1;
+        if msg_type = wr_msg then
+          dat := pop_integer(req_msg);
+          adr := -adr;
+          request_through_queue;
+        elsif msg_type = rd_msg then
+          dat := 0;
+          request_through_queue;
+          WBS_Q <= std_logic_vector(to_signed(dat, WBS_Q'length));
+        end if;
       end if;
       WBS_ACK <= '1';
       wait until rising_edge(CLK);

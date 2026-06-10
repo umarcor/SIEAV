@@ -30,7 +30,6 @@ architecture arch of tb_p2p is
   signal wb_we    : std_logic;
   signal wb_stall : std_logic;
   signal wb_ack   : std_logic;
-  signal done     : std_logic;
 
 begin
 
@@ -45,7 +44,7 @@ begin
     wait for clk_period*10;
     rst <= '0';
     wait for clk_period;
-    wait until done;
+    wait until (wb_cyc and wb_stb) = '1' and signed(wb_adr)=0 and rising_edge(clk);
     report "end of test";
     test_runner_cleanup(runner);
   end process;
@@ -68,8 +67,7 @@ begin
     WBM_STB   => wb_stb,
     WBM_WE    => wb_we,
     WBM_STALL => wb_stall,
-    WBM_ACK   => wb_ack,
-    DONE      => done
+    WBM_ACK   => wb_ack
   );
 
 

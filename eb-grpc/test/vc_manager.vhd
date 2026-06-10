@@ -48,14 +48,14 @@ begin
     WBM_STB   => wb_stb,
     WBM_WE    => wb_we,
     WBM_STALL => wb_stall,
-    WBM_ACK   => wb_ack,
-    DONE      => DONE
+    WBM_ACK   => wb_ack
   );
 
   vc_wbs2q: entity work.wbs2q
   generic map (
     g_request => g_request,
     g_response => g_response,
+    g_header => 16,
     g_dat_width => g_dat_width,
     g_adr_width => g_adr_width
   )
@@ -69,7 +69,8 @@ begin
     WBS_STB   => wb_stb,
     WBS_WE    => wb_we,
     WBS_STALL => wb_stall,
-    WBS_ACK   => wb_ack
+    WBS_ACK   => wb_ack,
+    DONE      => DONE
   );
 
 end;

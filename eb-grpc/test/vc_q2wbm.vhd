@@ -26,7 +26,8 @@ entity q2wbm is
     WBM_STB   : out std_logic;
     WBM_WE    : out std_logic;
     WBM_STALL :  in std_logic;
-    WBM_ACK   :  in std_logic
+    WBM_ACK   :  in std_logic;
+    DONE      : out std_logic
   );
 end q2wbm;
 
@@ -56,36 +57,36 @@ begin
 
     variable msg : vc_msg_t;
 
-    variable adr : std_logic_vector(WBM_ADR'range);
-    variable dat : std_logic_vector(WBM_Q'range);
+    variable adr : std_logic_vector(WBM_ADR'range) := (others=>'0');
+    variable dat : std_logic_vector(WBM_Q'range) := (others=>'0');
+    variable empty : boolean := true;
 
   begin
 
+    DONE <= '0';
     info("q2wbm!");
 
-    while true loop
+    while msg.adr /= 0 or empty loop
 
+      empty := is_empty(g_request);
 --      empty := grpc_request(req);
 --      radr := req(0);
 --      rdat := req(1);
 --      if empty then
-      if is_empty(g_request) then
+      if empty then
         wait for 50 ns;
       else
         msg := pop_msg(g_request);
         info(to_string(msg.adr) & " " & to_string(msg.dat));
 --        info(to_string(radr) & " " & to_string(rdat));
-
-        adr := std_logic_vector(to_signed(abs(msg.adr)-1, g_adr_width));
+        adr := std_logic_vector(to_signed(abs(msg.adr)-1, g_adr_width)) when msg.adr/=0 else (others=>'0');
         dat := std_logic_vector(to_signed(msg.dat, g_dat_width));
-        info("0x"&to_hstring(adr) & " 0x"&to_hstring(dat));
-
         if msg.adr < 0 then
           write_bus(net, bus_handle, adr, dat);
         else
           read_bus(net, bus_handle, adr, dat);
         end if;
-
+        info("0x"&to_hstring(adr) & " 0x"&to_hstring(dat));
         push_msg(g_response, (
           adr => msg.adr,
           dat => to_integer(signed(dat))
@@ -95,6 +96,8 @@ begin
 
     end loop;
 
+    info("q2wbm done");
+    DONE <= '1';
     wait;
   end process;
 

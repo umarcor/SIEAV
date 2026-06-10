@@ -12,7 +12,8 @@ entity vc_unit is
     g_adr_width : natural := 10
   );
   port (
-    CLK : in std_logic
+    CLK  :  in std_logic;
+    DONE : out std_logic
   );
 end vc_unit;
 
@@ -47,7 +48,8 @@ begin
     WBM_STB   => wb_stb,
     WBM_WE    => wb_we,
     WBM_STALL => wb_stall,
-    WBM_ACK   => wb_ack
+    WBM_ACK   => wb_ack,
+    DONE      => DONE
   );
 
   uut_unit: entity work.unit
