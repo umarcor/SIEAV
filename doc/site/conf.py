@@ -35,6 +35,7 @@ extensions = [
     "sphinx.ext.extlinks",
     "sphinx.ext.intersphinx",
     "sphinxcontrib.bibtex",
+    'myst_parser'
 ]
 
 bibtex_default_style = 'plain'
@@ -50,7 +51,8 @@ for item in bibfiles:
         raise Exception(f"Bibliography file {item} does not exist!")
 
 source_suffix = {
-    ".rst": "restructuredtext",
+    '.rst': 'restructuredtext',
+    '.md': 'markdown'
 }
 
 master_doc = "index"
@@ -63,7 +65,7 @@ release = version  # The full version, including alpha/beta/rc tags.
 
 language = None
 
-exclude_patterns = ["_build"]
+exclude_patterns = ['references/VHDL.md']
 
 numfig = True
 
