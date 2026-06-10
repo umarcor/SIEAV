@@ -29,6 +29,13 @@ Co-simulation and behavioural verification with VHDL, C/C++ and Python/m
   exercises/xyce
 
 .. toctree::
+  :caption: Issues
+  :hidden:
+
+  issues/types
+  issues/pointers
+
+.. toctree::
   :caption: Appendix
   :hidden:
 
