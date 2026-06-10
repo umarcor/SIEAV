@@ -22,8 +22,6 @@ Find the syllabus:
    :height: 100 px
    :target: https://www.ehu.eus/gded
 
-.. |nbsp| unicode:: 0xA0
-
 .. centered:: |Logo:EHU| |nbsp| |nbsp| |nbsp| |nbsp| |Logo:GDED|
 
 .. raw:: html

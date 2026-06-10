@@ -64,6 +64,16 @@ exclude_patterns = ['references/VHDL.md']
 
 numfig = True
 
+# reST settings
+prologPath = "prolog.inc"
+try:
+    with open(prologPath, "r") as prologFile:
+        rst_prolog = prologFile.read()
+except Exception as ex:
+    print("[ERROR:] While reading '{0!s}'.".format(prologPath))
+    print(ex)
+    rst_prolog = ""
+
 # -- Options for HTML output -------------------------------------------------------------------------------------------
 
 html_context = {}
