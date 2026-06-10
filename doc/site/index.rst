@@ -15,9 +15,18 @@ Co-simulation and behavioural verification with VHDL, C/C++ and Python/m
   VHDL
   Co-design
   Installation
-  VUnit
-  Control
-  Exercise
+
+.. toctree::
+  :caption: Exercises
+  :hidden:
+
+  exercises/ghdl_vunit
+  exercises/matrices
+  exercises/control
+  exercises/logging
+  exercises/hsces
+  exercises/octave
+  exercises/xyce
 
 .. toctree::
   :caption: Appendix
