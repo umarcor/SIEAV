@@ -27,6 +27,7 @@ Co-simulation and behavioural verification with VHDL, C/C++ and Python/m
   exercises/hsces
   exercises/octave
   exercises/xyce
+  exercises/eb-grpc
 
 .. toctree::
   :caption: Appendix
