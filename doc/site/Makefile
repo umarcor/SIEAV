@@ -34,12 +34,5 @@ references:
 
 #---
 
-theme:
-	mkdir _theme
-	curl -fsSL https://codeload.github.com/buildthedocs/sphinx.theme/tar.gz/v1 | \
-	tar -xzC _theme --strip-components=1
-
-#---
-
 %:
 	$(SPHINXBUILD) -b $@ $(ALLSPHINXOPTS) $(BUILDDIR)/$@
