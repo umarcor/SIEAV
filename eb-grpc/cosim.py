@@ -15,7 +15,7 @@ DIST = ROOT / 'dbhi-grpc/dist'
 lib = VU.add_library("lib")
 lib.add_source_files([
   ROOT / "rtl/*.vhd",
-  ROOT / "test/cosim/tb_*.vhd"
+  ROOT / "test/cosim/*.vhd"
 ])
 
 for module in ["manager", "unit"]:

@@ -5,14 +5,8 @@ library vunit_lib;
 context vunit_lib.vunit_context;
 context vunit_lib.vc_context;
 
-use work.vc_queue_pkg.vc_msg_t;
-use work.vc_queue_pkg.push_msg;
-use work.vc_queue_pkg.pop_msg;
-
-entity wbs2q is
+entity wbs2grpc is
   generic (
-    g_request   : queue_t;
-    g_response  : queue_t;
     g_header    : natural := 0;
     g_dat_width : natural := 16;
     g_adr_width : natural := 10
@@ -30,9 +24,9 @@ entity wbs2q is
     WBS_ACK   : out std_logic;
     DONE      : out std_logic
   );
-end wbs2q;
+end wbs2grpc;
 
-architecture arch of wbs2q is
+architecture arch of wbs2grpc is
 
   constant wbs_ack_actor: actor_t := new_actor;
   constant wr_msg : msg_type_t := new_msg_type("wb slave write");
@@ -61,22 +55,15 @@ begin
 
     variable adr, dat : integer;
 
-    procedure request_through_queue is
-      variable resp : vc_msg_t;
+    procedure request_through_grpc is
+      function grpc_request(radr : integer; rdat : integer) return integer is
+      begin report "VHPIDIRECT grpc_request" severity failure; end;
+      attribute foreign of grpc_request : function is "VHPIDIRECT hdl_request";
+      variable q : integer;
     begin
-      push_msg(g_request, (
-        adr => adr,
-        dat => dat
-      ));
-      while is_empty(g_response) loop
-        wait for 50 ns;
-      end loop;
-      resp := pop_msg(g_response);
-      check_equal(resp.adr, adr);
-      if adr < 0 then
-        check_equal(resp.dat, dat);
-      end if;
-      dat := resp.dat;
+      q := grpc_request(adr, dat);
+      if adr < 0 then check_equal(q, dat); end if;
+      dat := q;
     end;
 
     variable req_msg : msg_t;
@@ -96,10 +83,10 @@ begin
       if adr < g_header then
         case adr is
           when 0 =>
-          -- Tell grpc2q to finish by passing address 0 through the request channel.
-          request_through_queue;
-          DONE <= '1';
-          when others => error("Unknown wbs2q header address " & to_string(adr));
+            -- Tell grpc2wbm to raise DONE by passing address 0 through the request channel.
+            request_through_grpc;
+            DONE <= '1';
+          when others => error("Unknown wbs2grpc header address " & to_string(adr));
         end case;
       else
         -- Substract the header offset and add one to encode writes as negatives and reads as positives.
@@ -107,10 +94,9 @@ begin
         if msg_type = wr_msg then
           dat := pop_integer(req_msg);
           adr := -adr;
-          request_through_queue;
+          request_through_grpc;
         elsif msg_type = rd_msg then
-          dat := 0;
-          request_through_queue;
+          request_through_grpc;
           WBS_Q <= std_logic_vector(to_signed(dat, WBS_Q'length));
         end if;
       end if;

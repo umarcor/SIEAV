@@ -5,14 +5,8 @@ library vunit_lib;
 context vunit_lib.vunit_context;
 context vunit_lib.vc_context;
 
-use work.vc_queue_pkg.vc_msg_t;
-use work.vc_queue_pkg.pop_msg;
-use work.vc_queue_pkg.push_msg;
-
-entity q2wbm is
+entity grpc2wbm is
   generic (
-    g_request   : queue_t;
-    g_response  : queue_t;
     g_dat_width : natural := 16;
     g_adr_width : natural := 10
   );
@@ -29,9 +23,9 @@ entity q2wbm is
     WBM_ACK   :  in std_logic;
     DONE      : out std_logic
   );
-end q2wbm;
+end grpc2wbm;
 
-architecture arch of q2wbm is
+architecture arch of grpc2wbm is
 
   constant bus_handle : bus_master_t := new_bus(
     data_length => g_dat_width,
@@ -41,7 +35,18 @@ architecture arch of q2wbm is
 begin
 
   process
-    variable msg : vc_msg_t;
+    type request_t is array(0 to 1) of integer;
+
+    function grpc_request (arr: request_t) return boolean is
+    begin report "VHPIDIRECT grpc_request" severity failure; end;
+    attribute foreign of grpc_request : function is "VHPIDIRECT hdl_request";
+
+    variable req : request_t;
+    variable radr, rdat : integer;
+
+    procedure grpc_response(adr : integer; dat : integer) is
+    begin report "VHPIDIRECT grpc_response" severity failure; end;
+    attribute foreign of grpc_response : procedure is "VHPIDIRECT hdl_response";
 
     variable adr : std_logic_vector(WBM_ADR'range) := (others=>'0');
     variable dat : std_logic_vector(WBM_Q'range) := (others=>'0');
@@ -50,29 +55,29 @@ begin
   begin
 
     DONE <= '0';
-    info("q2wbm!");
+    info("grpc2wbm!");
 
-    while msg.adr /= 0 or empty loop
-      empty := is_empty(g_request);
+    while radr /= 0 or empty loop
+      empty := grpc_request(req);
+      radr := req(0);
+      rdat := req(1);
       if empty then
         wait for 50 ns;
       else
-        msg := pop_msg(g_request);
-        info(to_string(msg.adr) & " " & to_string(msg.dat));
-        adr := std_logic_vector(to_signed(abs(msg.adr)-1, g_adr_width)) when msg.adr/=0 else (others=>'0');
-        dat := std_logic_vector(to_signed(msg.dat, g_dat_width));
-        if msg.adr < 0 then
+        info(to_string(radr) & " " & to_string(rdat));
+        adr := std_logic_vector(to_signed(abs(radr)-1, g_adr_width)) when radr/=0 else (others=>'0');
+        dat := std_logic_vector(to_signed(rdat, g_dat_width));
+        if radr < 0 then
           write_bus(net, bus_handle, adr, dat);
         else
           read_bus(net, bus_handle, adr, dat);
         end if;
         info("0x"&to_hstring(adr) & " 0x"&to_hstring(dat));
-        push_msg(g_response, (adr => msg.adr, dat => to_integer(signed(dat))));
+        grpc_response(radr, to_integer(signed(dat)));
       end if;
-
     end loop;
 
-    info("q2wbm done");
+    info("grpc2wbm done");
     DONE <= '1';
     wait;
 
