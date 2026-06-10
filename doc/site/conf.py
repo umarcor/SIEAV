@@ -19,6 +19,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+from os import environ
 from pathlib import Path
 from json import loads as json_loads
 
@@ -85,7 +86,7 @@ html_theme = "furo"
 
 html_theme_options = {
     "source_repository": "https://github.com/umarcor/SIEAV",
-    "source_branch": "main",
+    "source_branch": environ.get("GITHUB_REF_NAME", "main"),
     "source_directory": "doc/site",
     "sidebar_hide_name": True,
 }
