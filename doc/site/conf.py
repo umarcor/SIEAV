@@ -3,7 +3,7 @@
 # Authors:
 #   Unai Martinez-Corral
 #
-# Copyright 2021-2022 Unai Martinez-Corral <unai.martinezcorral@ehu.eus>
+# Copyright 2021-2026 Unai Martinez-Corral <unai.martinezcorral@ehu.eus>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ source_suffix = {
 
 master_doc = "index"
 project = "SIEAV CVS"
-copyright = "2020-2022, Unai Martinez-Corral"
+copyright = "2020-2026, Unai Martinez-Corral"
 author = "Unai Martinez-Corral"
 
 version = "latest"
