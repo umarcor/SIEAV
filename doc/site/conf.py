@@ -33,7 +33,7 @@ extensions = [
     'myst_parser'
 ]
 
-bibtex_default_style = 'plain'
+bibtex_default_style = 'alpha'
 bibfiles = [
     ROOT / 'references/CoSim.bib',
     ROOT / 'references/FLOSS.bib',

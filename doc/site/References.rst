@@ -28,4 +28,3 @@ References
 * `gitlab.com/hgpub <https://gitlab.com/hgpub>`__
 
 .. bibliography::
-  :labelprefix: R
