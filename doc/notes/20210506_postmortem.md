@@ -44,7 +44,7 @@ Asimismo, no vamos a entrar en muchos detalles, pero es recomendable saber que l
 # Tareas a realizar para la próxima sesión
 
 - Clonar https://github.com/umarcor/MSEA limpio.
-- Situarnos en el subdirectorio `ghdl_ug` y abrir el `README.md`.
+- Situarnos en el subdirectorio `ghdl_vunit` y abrir el `README.md`.
 - Leer detenidamente cada ejemplo en la User Guide de GHDL, y a continuación ejecutar los comandos indicados en el README. Ver las notas en el mismo al respecto.
 - Escribir un script de Python y adaptar el testbench del adder para usar VUnit. Como veis en el README, la solución está dada (`vunit_run.py` y `tb_adder_vunit.vhd`), por lo que podéis consultarlo si os atascáis.
   - Una vez ejecutado satisfactoriamente, quienes dispongáis de ModelSim/QuestaSim podéis probar a definir la variable de entorno, tal como se indica en el README, y volver a ejecutar la simulación. El mismo comando de Python debería esta vez utilizar ModelSim/QuestaSim para la simulación y visualización, en vez de GHDL y GTKWave.
@@ -65,7 +65,7 @@ La documentación referenciada no es particularmente amena, pero prácticamente 
 - Hay que ejecutar el script (y los ejemplos) en una terminal MINGW64, NO MSYS2, NO MINGW32, ni ninguna otra. Los errores de "python no encontrado" se han debido a esto.
 - Hay que leer el contenido de la terminal hasta encontrar el primer error, no el último. El primero puede condicionar los posteriores. Este ha sido el caso al ejecutar el script varias veces, ya que intentaba clonar VUnit pero el directorio ya existía.
 - En caso de ejecutar el ejemplo heartbeat mediate `ghdl -r ...`, la terminación con Ctrl+C no finaliza el binario. He añadido una aclaración en el README al respecto.
-- Al duplicar un fichero y modificar el contenido sin renombrar la entidad, produce un conflicto. Analiza dos veces "la misma" entidad y el segundo análisis sobreescribe la primera. Este es un error que yo había cometido también en ghdl_ug. Lo he subsanado.
+- Al duplicar un fichero y modificar el contenido sin renombrar la entidad, produce un conflicto. Analiza dos veces "la misma" entidad y el segundo análisis sobreescribe la primera. Este es un error que yo había cometido también en `ghdl_vunit`. Lo he subsanado.
   - Una solución es renombrar la entidad (no sólo el fichero).
   - Otra solución es modificar `lib.add_source_files("*.vhd")` en el script de Python, para especificar una lista concreta de ficheros. Por ejemplo `lib.add_source_files(["adder.vhd", "tb_adder.vhd"])`.
 
@@ -75,7 +75,7 @@ A una persona creo que le daba un "Segmentation fault" al intentar abrir un fich
 
 ---
 
-Un compañero me ha preguntado cómo se pueden restablecer/revertir los cambios realizados en los ficheros de un repositorio de git. Por ejemplo, el contenido de ghdl_ug, después de clonar el repo umarcor/MSEA y de haber cambiado algunos ficheros.
+Un compañero me ha preguntado cómo se pueden restablecer/revertir los cambios realizados en los ficheros de un repositorio de git. Por ejemplo, el contenido de `ghdl_vunit`, después de clonar el repo umarcor/MSEA y de haber cambiado algunos ficheros.
 
 Una opción es `git checkout path/al/directorio/o/fichero`. Así se revertirán esos ficheros en concreto.
 

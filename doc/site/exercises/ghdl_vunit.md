@@ -1,6 +1,6 @@
 # GHDL Quick Start Guide and VUnit User Guide
 
-subdir {ghsrc}`ghdl_ug`
+subdir {ghsrc}`ghdl_vunit`
 
 *TBC*
 
