@@ -19,19 +19,14 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#from sys import path as sys_path
-from os.path import abspath
 from pathlib import Path
 from json import loads as json_loads
 
 ROOT = Path(__file__).resolve().parent
 
-#sys_path.insert(0, abspath("."))
-
 # -- General configuration ---------------------------------------------------------------------------------------------
 
 extensions = [
-    "sphinx.ext.autodoc",
     "sphinx.ext.extlinks",
     "sphinx.ext.intersphinx",
     "sphinxcontrib.bibtex",
@@ -121,34 +116,6 @@ latex_documents = [
 #   right: '{page-number} / {page-count}'
 #   center: '{revnumber}'
 #   left: '{docdate}'
-
-# -- Options for manual page output ------------------------------------------------------------------------------------
-
-# One entry per manual page. List of tuples
-# (source start file, name, description, authors, manual section).
-man_pages = [
-    (
-        master_doc,
-        "SIEAV-CVS",
-        "Co-simulation and behavioural verification with VHDL, C/C++ and Python/m",
-        [author],
-        1,
-    )
-]
-
-# -- Options for Texinfo output ----------------------------------------------------------------------------------------
-
-texinfo_documents = [
-    (
-        master_doc,
-        "SIEAV-CVS",
-        "Co-simulation and behavioural verification with VHDL, C/C++ and Python/m",
-        author,
-        "HDL simulation",
-        "HDL verification.",
-        "Miscellaneous",
-    ),
-]
 
 # -- Sphinx.Ext.InterSphinx --------------------------------------------------------------------------------------------
 
