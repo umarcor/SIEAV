@@ -34,6 +34,14 @@ extensions = [
     'myst_parser'
 ]
 
+myst_enable_extensions = [
+    "gfm_autolink",
+    "colon_fence",
+    "attrs_block",
+    "attrs_inline",
+    "dollarmath",
+]
+
 bibtex_default_style = 'alpha'
 bibfiles = [
     ROOT / 'references/CoSim.bib',
